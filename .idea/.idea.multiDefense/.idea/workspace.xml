@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c29668c-1273-4a4e-bb4a-c374d8d6671d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/char_wood/Begin_attack_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/char_wood/Begin_attack_1-sheet.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Character.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Character_Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Character_Spawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/Adventurer.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Animations/Character/Adventurer.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Monster/GreenSlime/DEAD.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Animations/Monster/GreenSlime/DEAD.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Monster/GreenSlime/GreenSlime.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Animations/Monster/GreenSlime/GreenSlime.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Monster.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Monster.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +27,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Character.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/HitText.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Monster.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@001b54a8988a/Editor/ViewSwitcher.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -101,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1738050026731</updated>
       <workItem from="1738050031800" duration="8000" />
-      <workItem from="1738653192344" duration="4640000" />
+      <workItem from="1738653192344" duration="9222000" />
     </task>
     <servers />
   </component>
