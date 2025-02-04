@@ -12,6 +12,7 @@ public class Character_Spawner : MonoBehaviour
     public static List<Vector2> _move_List = new List<Vector2>();
     private List<Vector2> _spawn_List = new List<Vector2>();
     private List<bool> _spawn_List_Array = new List<bool>();
+    
     private void Start()
     {
         Grid_Start();
@@ -54,6 +55,12 @@ public class Character_Spawner : MonoBehaviour
 
     public void Summon()
     {
+        if (Game_Mng.Instance.Money < Game_Mng.Instance.SummonCount)
+            return;
+
+        Game_Mng.Instance.Money -= Game_Mng.Instance.SummonCount;
+        Game_Mng.Instance.SummonCount += 2;
+        
         int position_value = -1;
         var go = Instantiate(_spawnPrefab);
         for (int i = 0; i < _spawn_List_Array.Count; i++)
@@ -76,6 +83,7 @@ public class Character_Spawner : MonoBehaviour
     private IEnumerator Spawn_Monster_Coroutine()
     {
         var go = Instantiate(_spawn_Monster_Prefab, _move_List[0], Quaternion.identity);
+        Game_Mng.Instance.AddMonster(go);
         
         yield return new WaitForSeconds(0.7f);
 
