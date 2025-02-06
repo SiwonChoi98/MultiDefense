@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
 
 public class Spawner : NetworkBehaviour
 {
@@ -111,11 +112,15 @@ public class Spawner : NetworkBehaviour
         NetworkObject networkObject = go.GetComponent<NetworkObject>();
         networkObject.Spawn();
 
-        ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId);
+        Hero_Scriptable[] m_Character_Datas = Resources.LoadAll<Hero_Scriptable>("Character_Scriptable");
+        var data = m_Character_Datas[UnityEngine.Random.Range(0, m_Character_Datas.Length)];
+        go.GetComponent<Hero>().Initialize(data.GetHeroData());
+        
+        ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId, data.GetHeroData());
     }
 
     [ClientRpc]
-    private void ClientSpawnHeroClientRpc(ulong networkId, ulong clientId)
+    private void ClientSpawnHeroClientRpc(ulong networkId, ulong clientId, HeroData data)
     {
         if (Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkId,
                 out NetworkObject networkObject))
@@ -123,6 +128,7 @@ public class Spawner : NetworkBehaviour
             if (clientId == LocalID())
             {
                 SetPositionHero(networkObject, true);
+                networkObject.GetComponent<Hero>().Initialize(data);
             }
             else
             {

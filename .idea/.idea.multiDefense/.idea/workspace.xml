@@ -5,22 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c29668c-1273-4a4e-bb4a-c374d8d6671d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Manager/Game_Mng.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Manager/Game_Mng.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Network/Net_Mng.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Network/Net_Mng.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Character.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Character_Spawner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Character_Spawner.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/ATTACK.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/ATTACK.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/Adventurer.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/Adventurer.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/IDLE.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/IDLE.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/MOVE.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/Character/MOVE.anim.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Monster.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Monster.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/char_wood.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/char_wood.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/char_wood/Begin_attack_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/char_wood/Begin_attack_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/char_wood/Begin_idle_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/char_wood/Begin_idle_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/char_wood/Begin_run_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/char_wood/Begin_run_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/green_slime.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/green_slime.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/green_slime/Green_attack_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/green_slime/Green_attack_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/green_slime/Green_die_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/green_slime/Green_die_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/green_slime/Green_run_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/green_slime/Green_run_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/red_slime.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/red_slime.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_attack_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_attack_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_die_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_die_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_run_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_run_1-sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/Blood_Red.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/Blood_Red.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/Blood_White.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/Blood_White.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/avatar_box.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/avatar_box.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/blood_board.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/blood_board.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/blue asset.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/blue asset.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/blue_caro_button.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/blue_caro_button.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/card_icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/card_icon.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/chat_icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/chat_icon.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/chest_icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/chest_icon.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/dark_slot.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/dark_slot.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/green button.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/green button.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/level_flag.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/level_flag.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/raibow asset.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/raibow asset.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/red_line.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/red_line.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/skull_icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/skull_icon.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/wave_board.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/wave_board.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/yellow asset.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/yellow asset.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +62,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/HitText.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Network/Net_Scene_Mng.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@001b54a8988a/Editor/ViewSwitcher.cs" root0="SKIP_HIGHLIGHTING" />
@@ -113,7 +145,7 @@
       <workItem from="1738050031800" duration="8000" />
       <workItem from="1738653192344" duration="11695000" />
       <workItem from="1738723489138" duration="4417000" />
-      <workItem from="1738812854074" duration="10243000" />
+      <workItem from="1738812854074" duration="13543000" />
     </task>
     <servers />
   </component>

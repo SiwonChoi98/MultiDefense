@@ -6,11 +6,21 @@ using UnityEngine;
 
 public class Hero : Character
 {
+    public int ATK;
     public float AttackRange = 1.0f;
     public float AttackSpeed = 1.0f;
     public NetworkObject Target;
     public LayerMask EnemyMask;
+    public ScriptableObject m_Data;
 
+    public void Initialize(HeroData obj)
+    {
+        ATK = obj.heroATK;
+        AttackRange = obj.heroRange;
+        AttackSpeed = obj.heroATK_Speed;
+
+        GetInitCharacter(obj.heroName);
+    }
     private void Update()
     {
         CheckForEnemies();
@@ -46,7 +56,7 @@ public class Hero : Character
             Monster monster = spawnObject.GetComponent<Monster>();
             if (monster != null)
             {
-                monster.GetDamage(10);
+                monster.GetDamage(ATK);
             }
         }
     }

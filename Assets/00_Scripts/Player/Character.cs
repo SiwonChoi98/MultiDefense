@@ -5,10 +5,15 @@ public class Character : NetworkBehaviour
 {
     protected Animator _animator;
     protected SpriteRenderer _spriteRenderer;
-    public virtual void Start()
+    public virtual void Awake()
     {
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+    }
+
+    public void GetInitCharacter(string path)
+    {
+        _animator.runtimeAnimatorController = Resources.Load<Hero_Scriptable>("Character_Scriptable/" + path).Animator;
     }
 
     protected void AnimatorChange(string temp, bool trigger)

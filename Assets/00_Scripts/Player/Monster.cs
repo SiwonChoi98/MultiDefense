@@ -17,10 +17,10 @@ public class Monster : Character
     private bool _isDead = false;
 
     private List<Vector2> move_list = new();
-    public override void Start()
+    public override void Awake()
     {
         HP = MaxHp;
-        base.Start();
+        base.Awake();
     }
 
     public void Init(List<Vector2> vectorList)

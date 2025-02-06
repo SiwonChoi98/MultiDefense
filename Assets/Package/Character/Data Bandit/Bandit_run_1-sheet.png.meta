@@ -1,37 +1,31 @@
 fileFormatVersion: 2
-guid: 2c05d4009509cfa4aaf781afe4276221
+guid: 8a9b0f7cf90bfa042be8e601e1017495
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6198336741620585571
-    second: Begin_attack_1-sheet_0
+      213: -38447283822173438
+    second: Bandit_run_1-sheet_0
   - first:
-      213: 5765061334808435416
-    second: Begin_attack_1-sheet_1
+      213: -373656225706858902
+    second: Bandit_run_1-sheet_1
   - first:
-      213: 9149120884564634230
-    second: Begin_attack_1-sheet_2
+      213: 9025934733503960837
+    second: Bandit_run_1-sheet_2
   - first:
-      213: 8323622604701642619
-    second: Begin_attack_1-sheet_3
+      213: 352349036519789445
+    second: Bandit_run_1-sheet_3
   - first:
-      213: 1584793372054791948
-    second: Begin_attack_1-sheet_4
+      213: 5818709884512890703
+    second: Bandit_run_1-sheet_4
   - first:
-      213: 5963318986320663780
-    second: Begin_attack_1-sheet_5
+      213: -9133480313991576688
+    second: Bandit_run_1-sheet_5
   - first:
-      213: -7701299076308266880
-    second: Begin_attack_1-sheet_6
+      213: -3276467916039767821
+    second: Bandit_run_1-sheet_6
   - first:
-      213: 2965620275513319339
-    second: Begin_attack_1-sheet_7
-  - first:
-      213: -2676003976373482961
-    second: Begin_attack_1-sheet_8
-  - first:
-      213: 1668270039923931577
-    second: Begin_attack_1-sheet_9
+      213: 3884429159220335178
+    second: Bandit_run_1-sheet_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -153,7 +147,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Begin_attack_1-sheet_0
+      name: Bandit_run_1-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -168,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f88c6b05b469974c95b09b3bcc27f87
-      internalID: -748862801
+      spriteID: c5a65c52d757a0b41915c742df352460
+      internalID: -402796831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Begin_attack_1-sheet_1
+      name: Bandit_run_1-sheet_1
       rect:
         serializedVersion: 2
         x: 800
@@ -190,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 407803f558b9efb4cbefdd0c4f12639e
-      internalID: -7652167
+      spriteID: 13aaa99e7b34ed248885dcbca56179e8
+      internalID: 796546200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Begin_attack_1-sheet_2
+      name: Bandit_run_1-sheet_2
       rect:
         serializedVersion: 2
         x: 1600
@@ -212,14 +206,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23d3c3737fa6d62408273c082363d85b
-      internalID: 1998052151
+      spriteID: f0b2538509ac2d94eb298401901e7c20
+      internalID: 1096806524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Begin_attack_1-sheet_3
+      name: Bandit_run_1-sheet_3
       rect:
         serializedVersion: 2
         x: 2400
@@ -234,14 +228,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 979ea9e60944f3b4b992d3e9a984b241
-      internalID: -1006210504
+      spriteID: e2cdc1a7709b0eb4c9e8bd5f6ede7f06
+      internalID: -174910613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Begin_attack_1-sheet_4
+      name: Bandit_run_1-sheet_4
       rect:
         serializedVersion: 2
         x: 3200
@@ -256,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b7fed0ee562eb04688a95609992d998
-      internalID: 2050700733
+      spriteID: 92e0296281fc33d4689a85114904d793
+      internalID: -1471174281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Begin_attack_1-sheet_5
+      name: Bandit_run_1-sheet_5
       rect:
         serializedVersion: 2
         x: 4000
@@ -278,14 +272,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 161081a27befd044db5e71bfab386c50
-      internalID: 1666229977
+      spriteID: 2052f0785b552e04e8c7bea3383b7543
+      internalID: 726707210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Begin_attack_1-sheet_6
+      name: Bandit_run_1-sheet_6
       rect:
         serializedVersion: 2
         x: 4800
@@ -300,14 +294,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dd9745134586004f8b89a45b3c9bd08
-      internalID: 1302936416
+      spriteID: bf35d900b8b2f5848bf11cb05d000ea6
+      internalID: -186865095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Begin_attack_1-sheet_7
+      name: Bandit_run_1-sheet_7
       rect:
         serializedVersion: 2
         x: 5600
@@ -322,52 +316,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18366bd3adf83a340b71e31174ee7189
-      internalID: -1225110568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Begin_attack_1-sheet_8
-      rect:
-        serializedVersion: 2
-        x: 6400
-        y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f150267452381f9458ec401a82a71972
-      internalID: -1728452521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Begin_attack_1-sheet_9
-      rect:
-        serializedVersion: 2
-        x: 7200
-        y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f00301ceb4e238f49a7184c4a6af07fb
-      internalID: -544533721
+      spriteID: 1ddd2006e0b755d43a95dc232203fdd3
+      internalID: -1552653594
       vertices: []
       indices: 
       edges: []
@@ -376,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 00daa2087a702ed44ac038e79db98a58
+    spriteID: 046be15a3862d49449a43563d05ebfaa
     internalID: 0
     vertices: []
     indices: 
@@ -386,16 +336,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Begin_attack_1-sheet_0: -748862801
-      Begin_attack_1-sheet_1: -7652167
-      Begin_attack_1-sheet_2: 1998052151
-      Begin_attack_1-sheet_3: -1006210504
-      Begin_attack_1-sheet_4: 2050700733
-      Begin_attack_1-sheet_5: 1666229977
-      Begin_attack_1-sheet_6: 1302936416
-      Begin_attack_1-sheet_7: -1225110568
-      Begin_attack_1-sheet_8: -1728452521
-      Begin_attack_1-sheet_9: -544533721
+      Bandit_run_1-sheet_0: -402796831
+      Bandit_run_1-sheet_1: 796546200
+      Bandit_run_1-sheet_2: 1096806524
+      Bandit_run_1-sheet_3: -174910613
+      Bandit_run_1-sheet_4: -1471174281
+      Bandit_run_1-sheet_5: 726707210
+      Bandit_run_1-sheet_6: -186865095
+      Bandit_run_1-sheet_7: -1552653594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
