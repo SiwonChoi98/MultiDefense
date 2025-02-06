@@ -1,0 +1,218 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
+using Unity.Mathematics;
+using Unity.Netcode;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Spawner : NetworkBehaviour
+{
+    [SerializeField] private GameObject _spawnPrefab;
+    [SerializeField] private Monster _spawn_Monster_Prefab;
+
+    public List<Vector2> Player_Move_List = new List<Vector2>();
+    public List<Vector2> Other_Move_List = new List<Vector2>();
+    
+    private List<Vector2> Player_spawn_List = new List<Vector2>();
+    private List<Vector2> Other_spawn_List = new List<Vector2>();
+    
+    private List<bool> Player_spawn_List_Array = new List<bool>();
+    private List<bool>Other_spawn_List_Array = new List<bool>();
+    
+    private void Start()
+    {
+        SetGrid();
+
+        StartCoroutine(Spawn_Monster_Coroutine());
+    }
+
+    private void SetGrid()
+    {
+        Grid_Start(transform.GetChild(0), true);
+        Grid_Start(transform.GetChild(1), false);
+        
+        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        {
+            Player_Move_List.Add(transform.GetChild(0).GetChild(i).position);
+        }
+        
+        for (int i = 0; i < transform.GetChild(1).childCount; i++)
+        {
+            Other_Move_List.Add(transform.GetChild(1).GetChild(i).position);
+        }
+    }
+
+    #region Make_Grid
+
+    private void Grid_Start(Transform tt, bool player)
+    {
+        SpriteRenderer parentSprite = tt.GetComponent<SpriteRenderer>();
+        float parentWidth = parentSprite.bounds.size.x;
+        float parentHeight = parentSprite.bounds.size.y;
+        
+        float xCount = tt.localScale.x / 6;
+        float yCount = tt.localScale.y / 3;
+
+        for (int row = 0; row < 3; row++)
+        {
+            for (int col = 0; col < 6; col++)
+            {
+                float xPos = (-parentWidth / 2) + (col * xCount) + (xCount / 2);
+                float yPos = ((player ? parentHeight : -parentHeight) / 2) + (player ? -1 : 1) * (row * yCount) + (yCount / 2);
+
+                switch (player)
+                {
+                    case true:
+                        Player_spawn_List.Add(new Vector2(xPos, yPos + tt.localPosition.y - yCount));
+                        Player_spawn_List_Array.Add(false);
+                        break;
+                    case false:
+                        Other_spawn_List.Add(new Vector2(xPos, yPos + tt.localPosition.y));
+                        Other_spawn_List_Array.Add(false);
+                        break;
+                }
+                
+            }
+        }
+    }
+
+    #endregion
+    
+    #region 캐릭터 소환
+
+    public void Summon()
+    {
+        // if (Game_Mng.Instance.Money < Game_Mng.Instance.SummonCount)
+        //     return;
+        //
+        // Game_Mng.Instance.Money -= Game_Mng.Instance.SummonCount;
+        // Game_Mng.Instance.SummonCount += 2;
+
+        if (IsClient)
+        {
+            ServerHeroSpawnServerRpc(LocalID());
+        }
+        else if(IsServer)
+        {
+            HeroSpawn(LocalID());
+        }
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void ServerHeroSpawnServerRpc(ulong clientId)
+    {
+        HeroSpawn(clientId);
+    }
+    private void HeroSpawn(ulong clientId)
+    {
+        var go = Instantiate(_spawnPrefab);
+
+        NetworkObject networkObject = go.GetComponent<NetworkObject>();
+        networkObject.Spawn();
+
+        ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId);
+    }
+
+    [ClientRpc]
+    private void ClientSpawnHeroClientRpc(ulong networkId, ulong clientId)
+    {
+        if (Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkId,
+                out NetworkObject networkObject))
+        {
+            if (clientId == LocalID())
+            {
+                SetPositionHero(networkObject, true);
+            }
+            else
+            {
+                SetPositionHero(networkObject, false);
+            }
+        }
+    }
+
+    private void SetPositionHero(NetworkObject obj, bool player)
+    {
+        List<bool> spawnListArray = player ? Player_spawn_List_Array : Other_spawn_List_Array;
+        List<Vector2> spawnList = player ? Player_spawn_List : Other_spawn_List;
+        
+        int position_value = -1;
+        for (int i = 0; i < spawnListArray.Count; i++)
+        {
+            if (spawnListArray[i] == false)
+            {
+                position_value = i;
+                spawnListArray[i] = true;
+                break;
+            }
+        }
+    
+        obj.transform.position = spawnList[position_value];
+    }
+    #endregion
+    
+    #region 몬스터 소환
+
+    private IEnumerator Spawn_Monster_Coroutine()
+    {
+        yield return new WaitForSeconds(1.0f);
+        
+        if (IsClient)
+        {
+            ServerMonsterSpawnServerRpc(LocalID());
+        }
+        else if (IsServer)
+        {
+            MonsterSpawn(LocalID());
+        }
+        
+
+        StartCoroutine(Spawn_Monster_Coroutine());
+    }
+
+    //owner만 소환할 수 있는 것을 클라이언트도 요청할 수 있게끔 변경
+    //serverRpc는 서버에서만 동작하게 함
+    [ServerRpc(RequireOwnership = false)]
+    private void ServerMonsterSpawnServerRpc(ulong clientId)
+    {
+        MonsterSpawn(clientId);
+    }
+
+    private void MonsterSpawn(ulong clientId)
+    {
+        var go = Instantiate(_spawn_Monster_Prefab);
+        //Game_Mng.Instance.AddMonster(go);
+
+        NetworkObject networkObject = go.GetComponent<NetworkObject>();
+        networkObject.Spawn();
+
+        Game_Mng.Instance.AddMonster(go);
+        ClientMonsterSetClientRpc(networkObject.NetworkObjectId, clientId);
+    }
+
+    [ClientRpc]
+    private void ClientMonsterSetClientRpc(ulong networkObjectId, ulong clientId)
+    {
+        if (Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkObjectId,
+                out NetworkObject monsterNetworkObject))
+        {
+            if (clientId == LocalID())
+            {
+                monsterNetworkObject.transform.position = Player_Move_List[0];
+                monsterNetworkObject.GetComponent<Monster>().Init(Player_Move_List);
+            }
+            else
+            {
+                monsterNetworkObject.transform.position = Other_Move_List[0];
+                monsterNetworkObject.GetComponent<Monster>().Init(Other_Move_List);
+            }
+        }
+            
+    }
+
+    private ulong LocalID()
+    {
+        return Unity.Netcode.NetworkManager.Singleton.LocalClientId;
+    }
+    #endregion
+}

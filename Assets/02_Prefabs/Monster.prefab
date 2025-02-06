@@ -460,6 +460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4018095780444732726}
+  - component: {fileID: -7989217799986607586}
   - component: {fileID: -1290196506465130526}
   - component: {fileID: 6524037957873385902}
   m_Layer: 6
@@ -487,6 +488,31 @@ Transform:
   - {fileID: 5232950725851095036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7989217799986607586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7518366512327471019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2007550677
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &-1290196506465130526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,6 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfafbb62974942748bb2f726e40b855c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_Speed: 1
   _hitText: {fileID: -2653515549611859958, guid: 1d395b2ae8079924c9d5ebe953a4309f, type: 3}
   m_Fill: {fileID: 2740393423025018560}
