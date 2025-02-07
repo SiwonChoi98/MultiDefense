@@ -11,6 +11,10 @@ public class Character : NetworkBehaviour
         _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
+    public void OrderChange(int value)
+    {
+        _spriteRenderer.sortingOrder = value;
+    }
     public void GetInitCharacter(string path)
     {
         _animator.runtimeAnimatorController = Resources.Load<Hero_Scriptable>("Character_Scriptable/" + path).Animator;

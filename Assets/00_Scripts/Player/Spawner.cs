@@ -16,8 +16,8 @@ public class Spawner : NetworkBehaviour
     public List<Vector2> Player_Move_List = new List<Vector2>();
     public List<Vector2> Other_Move_List = new List<Vector2>();
     
-    private List<Vector2> Player_spawn_List = new List<Vector2>();
-    private List<Vector2> Other_spawn_List = new List<Vector2>();
+    private static List<Vector2> Player_spawn_List = new List<Vector2>();
+    private static List<Vector2> Other_spawn_List = new List<Vector2>();
     
     private List<bool> Player_spawn_List_Array = new List<bool>();
     private List<bool>Other_spawn_List_Array = new List<bool>();
@@ -25,6 +25,18 @@ public class Spawner : NetworkBehaviour
     private Dictionary<string, Hero_Holder> Hero_Holders = new();
     
     public static float xValue, yValue;
+
+    public static void Holder_Position_Set(Hero_Holder value01, Hero_Holder value02)
+    {
+        int indexCount01 = value01.index;
+        int indexCount02 = value02.index;
+
+        value01.index = indexCount02;
+        value02.index = indexCount01;
+
+        value01.transform.position = Player_spawn_List[value01.index];
+        value02.transform.position = Player_spawn_List[value02.index];
+    }
     private void Start()
     {
         SetGrid();
@@ -117,10 +129,10 @@ public class Spawner : NetworkBehaviour
         var data = m_Character_Datas[UnityEngine.Random.Range(0, m_Character_Datas.Length)];
 
         bool getHero = false;
-        string temp = IsServer ? "HOST" : "CLIENT";
+        string temp = clientId == 0 ? "HOST" : "CLIENT";
         foreach (var dd in Hero_Holders)
         {
-            if (dd.Key.Contains(IsServer ? "HOST" : "CLIENT"))
+            if (dd.Key.Contains(temp))
             {
                 if (dd.Value.m_Heros.Count < 3 && dd.Value.Holder_Name == data.Name)
                 {
@@ -179,6 +191,10 @@ public class Spawner : NetworkBehaviour
         }
     
         obj.transform.position = spawnList[position_value];
+        Hero_Holder heroHolder = obj.GetComponent<Hero_Holder>();
+        heroHolder.pos = spawnList[position_value];
+        heroHolder.index = position_value;
+
     }
     #endregion
     

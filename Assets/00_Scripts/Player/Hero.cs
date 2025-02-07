@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Hero : Character
 {
+    private Hero_Holder parent_Holder;
     public int ATK;
     public float AttackRange = 1.0f;
     public float AttackSpeed = 1.0f;
@@ -13,8 +14,9 @@ public class Hero : Character
     public LayerMask EnemyMask;
     public ScriptableObject m_Data;
 
-    public void Initialize(HeroData obj)
+    public void Initialize(HeroData obj, Hero_Holder heroHolder)
     {
+        parent_Holder = heroHolder;
         ATK = obj.heroATK;
         AttackRange = obj.heroRange;
         AttackSpeed = obj.heroATK_Speed;
@@ -28,7 +30,7 @@ public class Hero : Character
 
     private void CheckForEnemies()
     {
-        Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, AttackRange, EnemyMask);
+        Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(parent_Holder.transform.position, AttackRange, EnemyMask);
         AttackSpeed += Time.deltaTime;
         
         if (enemiesInRange.Length > 0)
@@ -60,14 +62,11 @@ public class Hero : Character
             }
         }
     }
-    // private void AttackEnemy(Monster enemy)
+    
+    
+    // private void OnDrawGizmosSelected()
     // {
-    //     AnimatorChange("DoAttack", true);
-    //     enemy.GetDamage(10);
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawWireSphere(parent_Holder.transform.position, AttackRange);
     // }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, AttackRange);
-    }
 }
