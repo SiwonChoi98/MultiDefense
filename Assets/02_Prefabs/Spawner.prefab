@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2131843534
+  GlobalObjectIdHash: 3355904501
   InScenePlacedSourceGlobalObjectIdHash: 2131843534
   DeferredDespawnTick: 0
   Ownership: 1
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  _spawnPrefab: {fileID: 5557541512407007160, guid: b28eb71a10510324e8839547a7ce2ffd, type: 3}
+  _spawnHolder: {fileID: 8815874393855083712, guid: 780db29f6b5e2cc4f9fbd1f2b5219100, type: 3}
   _spawn_Monster_Prefab: {fileID: -1290196506465130526, guid: 556a05064343ee24fbe3e1c96f852566, type: 3}
   Player_Move_List: []
   Other_Move_List: []

@@ -10,7 +10,7 @@ using Random = System.Random;
 
 public class Spawner : NetworkBehaviour
 {
-    [SerializeField] private GameObject _spawnPrefab;
+    [SerializeField] private GameObject _spawnHolder;
     [SerializeField] private Monster _spawn_Monster_Prefab;
 
     public List<Vector2> Player_Move_List = new List<Vector2>();
@@ -21,7 +21,10 @@ public class Spawner : NetworkBehaviour
     
     private List<bool> Player_spawn_List_Array = new List<bool>();
     private List<bool>Other_spawn_List_Array = new List<bool>();
+
+    private Dictionary<string, Hero_Holder> Hero_Holders = new();
     
+    public static float xValue, yValue;
     private void Start()
     {
         SetGrid();
@@ -56,6 +59,9 @@ public class Spawner : NetworkBehaviour
         float xCount = tt.localScale.x / 6;
         float yCount = tt.localScale.y / 3;
 
+        xValue = xCount;
+        yValue = yCount;
+        
         for (int row = 0; row < 3; row++)
         {
             for (int col = 0; col < 6; col++)
@@ -107,16 +113,35 @@ public class Spawner : NetworkBehaviour
     }
     private void HeroSpawn(ulong clientId)
     {
-        var go = Instantiate(_spawnPrefab);
-
-        NetworkObject networkObject = go.GetComponent<NetworkObject>();
-        networkObject.Spawn();
-
         Hero_Scriptable[] m_Character_Datas = Resources.LoadAll<Hero_Scriptable>("Character_Scriptable");
         var data = m_Character_Datas[UnityEngine.Random.Range(0, m_Character_Datas.Length)];
-        go.GetComponent<Hero>().Initialize(data.GetHeroData());
+
+        bool getHero = false;
+        string temp = IsServer ? "HOST" : "CLIENT";
+        foreach (var dd in Hero_Holders)
+        {
+            if (dd.Key.Contains(IsServer ? "HOST" : "CLIENT"))
+            {
+                if (dd.Value.m_Heros.Count < 3 && dd.Value.Holder_Name == data.Name)
+                {
+                    dd.Value.SpawnCharacter(data.GetHeroData());
+                    getHero = true;
+                    break;
+                }
+            }
+            
+        }
+
+        if (getHero == false)
+        {
+            var go = Instantiate(_spawnHolder);
+            NetworkObject networkObject = go.GetComponent<NetworkObject>();
+            networkObject.Spawn();
+            
+            Hero_Holders.Add(temp + Hero_Holders.Count.ToString(), go.GetComponent<Hero_Holder>());
+            ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId, data.GetHeroData());
+        }
         
-        ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId, data.GetHeroData());
     }
 
     [ClientRpc]
@@ -128,12 +153,12 @@ public class Spawner : NetworkBehaviour
             if (clientId == LocalID())
             {
                 SetPositionHero(networkObject, true);
-                networkObject.GetComponent<Hero>().Initialize(data);
             }
             else
             {
                 SetPositionHero(networkObject, false);
             }
+            networkObject.GetComponent<Hero_Holder>().SpawnCharacter(data);
         }
     }
 
