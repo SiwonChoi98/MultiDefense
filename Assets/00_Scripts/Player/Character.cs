@@ -25,10 +25,10 @@ public class Character : NetworkBehaviour
         if (trigger)
         {
             _animator.SetTrigger(temp);
+            return;
         }
-        else
-        {
-            _animator.SetBool(temp, true);
-        }
+        _animator.SetBool("IsMove", false);
+        _animator.SetBool("IsIdle", false);
+        _animator.SetBool(temp, true);
     }
 }

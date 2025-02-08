@@ -1,7 +1,8 @@
+using Unity.Netcode;
 using Unity.Services.Vivox;
 using UnityEngine;
 
-public class Camera_Ray : MonoBehaviour
+public class Camera_Ray : NetworkBehaviour
 {
     private Camera cam;
     private Hero_Holder holder = null;
@@ -36,12 +37,18 @@ public class Camera_Ray : MonoBehaviour
         if (holder != null)
         {
             holder.ReturnRange();
+            holder = null;
         }
             
         if (hit.collider != null)
         {
             holder = hit.collider.GetComponent<Hero_Holder>();
-           
+            int value = (int)NetworkManager.Singleton.LocalClientId;
+            bool CanGet = false;
+            if (value == 0) CanGet = holder.Holder_Part_Name.Contains("HOST");
+            else if (value == 1) CanGet = holder.Holder_Part_Name.Contains("CLIENT");
+
+            if (!CanGet) holder = null;
         }
     }
     private void MouseButton()
@@ -67,6 +74,8 @@ public class Camera_Ray : MonoBehaviour
     
     private void MouseButtonUp()
     {
+        if (holder == null) return;
+        
         if (Move_Holder == null)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -84,10 +93,12 @@ public class Camera_Ray : MonoBehaviour
         {
             Move_Holder.S_SetClick(false);
             
-            Spawner.Holder_Position_Set(holder, Move_Holder);
+            Spawner.Instance.Holder_Position_Set(holder.Holder_Part_Name, Move_Holder.Holder_Part_Name);
         }
 
         if (holder != null)
             holder.G_GetClick(false);
+        
+        Move_Holder = null;
     }
 }

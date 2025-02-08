@@ -6,16 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4c29668c-1273-4a4e-bb4a-c374d8d6671d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/HitText.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/HitText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Other/Camera_Ray.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Other/Camera_Ray.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Character.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/HERO_HOLDER.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/HERO_HOLDER.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Spawner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Spawner.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +107,8 @@
       <workItem from="1738653192344" duration="11695000" />
       <workItem from="1738723489138" duration="4417000" />
       <workItem from="1738812854074" duration="13543000" />
-      <workItem from="1738899763969" duration="10492000" />
+      <workItem from="1738899763969" duration="10704000" />
+      <workItem from="1738988746158" duration="5924000" />
     </task>
     <servers />
   </component>

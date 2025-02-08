@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 using Unity.Android.Gradle.Manifest;
 using Unity.Netcode;
 using UnityEngine;
@@ -15,21 +16,21 @@ public class Hero_Holder : NetworkBehaviour
     [SerializeField] private Transform SetClick;
     [SerializeField] private Transform GetClick;
 
-    //처음 생성된 위치 값
-    public int index;
+    
+    public string Holder_Part_Name;
     public string Holder_Name;
     public List<Hero> m_Heros = new();
     
     public Vector2 pos;
     private HeroData m_Data;
     
-    private readonly Vector2[] One = { Vector2.zero };
-    private readonly Vector2[] Two =
+    public readonly Vector2[] One = { Vector2.zero };
+    public readonly Vector2[] Two =
     {
         new Vector2(-0.1f, 0.05f), 
         new Vector2(0.1f, -0.1f)
     };
-    private readonly Vector2[] Three =
+    public readonly Vector2[] Three =
     {
         new Vector2(-0.1f, 0.1f),
         new Vector2(0.1f, -0.05f), 
@@ -40,7 +41,31 @@ public class Hero_Holder : NetworkBehaviour
     {
         MakeCollider();
     }
-    
+
+    public void HeroChange(Hero_Holder holder)
+    {
+        List<Vector2> poss = new List<Vector2>();
+        switch (m_Heros.Count)
+        {
+            case 1: poss = new List<Vector2>(One);
+                break;
+            case 2: poss = new List<Vector2>(Two);
+                break;
+            case 3: poss = new List<Vector2>(Three);
+                break;
+        }
+
+        for (int i = 0; i < poss.Count; i++)
+        {
+            Vector2 worldPos = holder.transform.TransformPoint(poss[i]);
+            poss[i] = worldPos;
+        }
+
+        for (int i = 0; i < m_Heros.Count; i++)
+        {
+            m_Heros[i].Position_Change(holder, poss, i);
+        }
+    }
     public void G_GetClick(bool active)
     {
         GetClick.gameObject.SetActive(active);
@@ -69,8 +94,6 @@ public class Hero_Holder : NetworkBehaviour
         var collider = gameObject.AddComponent<BoxCollider2D>();
         collider.isTrigger = true;
         collider.size = new Vector2(Spawner.xValue, Spawner.yValue);
-
-        SetClick.transform.localScale = new Vector2(collider.size.x * 2 , collider.size.y * 2);
     }
     public void SpawnCharacter(HeroData heroData)
     {

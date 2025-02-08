@@ -14,6 +14,7 @@ public class Hero : Character
     public LayerMask EnemyMask;
     public ScriptableObject m_Data;
 
+    private bool isMove = false;
     public void Initialize(HeroData obj, Hero_Holder heroHolder)
     {
         parent_Holder = heroHolder;
@@ -23,8 +24,59 @@ public class Hero : Character
 
         GetInitCharacter(obj.heroName);
     }
+
+    public void Position_Change(Hero_Holder holder, List<Vector2> poss, int myIndex)
+    {
+        isMove = true;
+        AnimatorChange("IsMove", false);
+
+        parent_Holder = holder;
+        
+        if (IsServer)
+        {
+            transform.parent = holder.transform;
+        }
+        
+
+        //음수면 -1 양수면 +1 반환
+        int sign = (int)Mathf.Sign(poss[myIndex].x - transform.position.x);
+
+        switch (sign)
+        {
+            case -1:
+                _spriteRenderer.flipX = true;
+                break;
+            case 1:
+                _spriteRenderer.flipX = false;
+                break;
+        }
+        StartCoroutine(Move_Coroutine(poss[myIndex]));
+    }
+
+    private IEnumerator Move_Coroutine(Vector2 endPos)
+    {
+        float current = 0.0f;
+        float percent = 0.0f;
+
+        Vector2 start = transform.position;
+        Vector2 end = endPos;
+        while (percent < 1.0f)
+        {
+            current += Time.deltaTime;
+            percent = current / 0.5f;
+            Vector2 lerpPos = Vector2.Lerp(start, end, percent);
+            transform.position = lerpPos;
+
+            yield return null;
+        }
+        isMove = false;
+        AnimatorChange("IsIdle", false);
+        _spriteRenderer.flipX = true;
+    }
     private void Update()
     {
+        if (isMove)
+            return;
         CheckForEnemies();
     }
 
