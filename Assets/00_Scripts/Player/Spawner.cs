@@ -61,12 +61,15 @@ public class Spawner : NetworkBehaviour
         Hero_Holder holder1 = Hero_Holders[value01];
         Hero_Holder holder2 = Hero_Holders[value02];
         
+        //위치 변경 *position
         holder1.HeroChange(holder2);
         holder2.HeroChange(holder1);
 
         List<Hero> Heros01 = new List<Hero>(holder1.m_Heros);
         List<Hero> Heros02 = new List<Hero>(holder2.m_Heros);
-        
+
+        (holder1.Holder_Name, holder2.Holder_Name) = (holder2.Holder_Name, holder1.Holder_Name);
+
         holder1.m_Heros = new List<Hero>(Heros02);
         holder2.m_Heros = new List<Hero>(Heros01);
     }
