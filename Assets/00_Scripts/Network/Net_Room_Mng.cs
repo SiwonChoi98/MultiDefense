@@ -1,4 +1,5 @@
 
+using System;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -48,9 +49,11 @@ public partial class Net_Mng : MonoBehaviour
             return;
         }
 
+        Matching_Object.SetActive(true);
+        
         //현재 로비를 찾기
         _currentLobby = await FindAvailableLobby();
-
+        
         if (_currentLobby == null)
         {
             await CreateNewLobby();
@@ -59,6 +62,7 @@ public partial class Net_Mng : MonoBehaviour
         {
             await JoinLobby(_currentLobby.Id);
         }
+        
     }
 
     private async Task<Lobby> FindAvailableLobby()
@@ -80,6 +84,30 @@ public partial class Net_Mng : MonoBehaviour
         return null;
     }
 
+    //로비 제거
+    private async void DestoryLobby(string lobbyId)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(lobbyId))
+            {
+                //로비 파괴
+                await LobbyService.Instance.DeleteLobbyAsync(lobbyId);
+                Debug.Log("Lobby Destroy : " + lobbyId);
+            }
+
+            if (NetworkManager.Singleton.IsHost)
+            {
+                //호스트 연결 끊기
+                NetworkManager.Singleton.Shutdown();
+                Matching_Object.SetActive(false);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Failed to destroy lobby : " + e.Message);
+        }
+    }
     private async Task CreateNewLobby()
     {
         try
@@ -88,7 +116,9 @@ public partial class Net_Mng : MonoBehaviour
             Debug.Log("새로운 방 생성됨 : " + _currentLobby.Id);
 
             await AllocateRelayServerAndJoin(_currentLobby);
-
+            
+            CancelButton.onClick.AddListener(() => DestoryLobby(_currentLobby.Id));
+            
             StartHost();
         }
         catch (LobbyServiceException e)

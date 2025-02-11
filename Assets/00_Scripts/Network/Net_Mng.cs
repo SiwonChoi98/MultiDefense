@@ -11,8 +11,12 @@ public partial class Net_Mng : MonoBehaviour
     private string gamePlaySceneName = "GamePlayScene";
     
     public Button StartMatchButton, JoinMatchButton;
+    public GameObject Matching_Object;
+    public Button CancelButton;
+    
     public InputField fieldText;
     public Text JoinCodeText;
+    
     //게임이 시작되었을 때 
     private async void Start()
     {
@@ -27,6 +31,7 @@ public partial class Net_Mng : MonoBehaviour
         }
         
         StartMatchButton.onClick.AddListener(() => StartMatchMaking());
+        
         JoinMatchButton.onClick.AddListener(() => JoinGameWithCode(fieldText.text));
     }
 
