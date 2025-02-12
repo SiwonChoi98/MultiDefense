@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using Unity.Services.Vivox;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Camera_Ray : NetworkBehaviour
 {
@@ -13,17 +14,18 @@ public class Camera_Ray : NetworkBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        //EventSystem.current.IsPointerOverGameObject() : UI 위에 있는지 파악 (True : 현재 마우스 포인터가 ui이다.)
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             MouseButtonDown();
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             MouseButton();
         }
         
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             MouseButtonUp();
         }

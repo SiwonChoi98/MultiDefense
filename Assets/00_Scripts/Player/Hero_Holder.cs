@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Unity.Android.Gradle.Manifest;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 /// <summary>
 /// Host에서만 동작하는 객체
@@ -21,7 +23,7 @@ public class Hero_Holder : NetworkBehaviour
     public string Holder_Name;
     public List<Hero> m_Heros = new();
     
-    public Vector2 pos;
+    public int index;
     private HeroData m_Data;
     
     public readonly Vector2[] One = { Vector2.zero };
@@ -36,12 +38,87 @@ public class Hero_Holder : NetworkBehaviour
         new Vector2(0.1f, -0.05f), 
         new Vector2(-0.15f, -0.15f)
     };
+
+    public Button SellButton, CompositionButton;
     
     private void Start()
     {
         MakeCollider();
+        
+        SellButton.onClick.AddListener(() => Sell());
     }
 
+    #region  캐릭터 판매
+
+    private void Sell()
+    {
+        if (IsClient)
+        {
+            SellServerRpc(LocalID());
+        }
+        else if(IsServer)
+        {
+            SellCharacter(LocalID());
+        }
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void SellServerRpc(ulong clientId)
+    {
+        SellCharacter(clientId);
+    }
+
+    private void SellCharacter(ulong clientId)
+    {
+        var hero = m_Heros[m_Heros.Count - 1];
+        ulong heroId = hero.NetworkObjectId;
+        NetworkObject obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[heroId];
+        SellClientRpc(heroId, clientId);
+        obj.Despawn();
+    }
+
+    [ClientRpc]
+    private void SellClientRpc(ulong heroKey, ulong clientId)
+    {
+        var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[heroKey];
+        m_Heros.Remove(obj.GetComponent<Hero>());
+
+        if (m_Heros.Count == 0)
+        {
+            DestroyServerRpc(clientId);
+        }
+        CheckGetPosition();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void DestroyServerRpc(ulong clientId)
+    {
+        DestroyClientRpc(clientId);
+        
+        NetworkObject holderObj = Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects[NetworkObjectId];
+        holderObj.Despawn();
+    }
+
+    [ClientRpc]
+    private void DestroyClientRpc(ulong clientId)
+    {
+        Spawner.Instance.Hero_Holders.Remove(Holder_Part_Name);
+        if (LocalID() == clientId)
+        {
+            Spawner.Player_spawn_List_Array[index] = false;
+        }
+        else
+        {
+            Spawner.Other_spawn_List_Array[index] = false;
+        }
+    }
+
+    #endregion
+    
+    public void Composition()
+    {
+        
+    }
     public void HeroChange(Hero_Holder holder)
     {
         List<Vector2> poss = new List<Vector2>();

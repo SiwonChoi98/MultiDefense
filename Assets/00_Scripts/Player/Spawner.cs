@@ -29,8 +29,8 @@ public class Spawner : NetworkBehaviour
     private static List<Vector2> Player_spawn_List = new List<Vector2>();
     private static List<Vector2> Other_spawn_List = new List<Vector2>();
     
-    private List<bool> Player_spawn_List_Array = new List<bool>();
-    private List<bool>Other_spawn_List_Array = new List<bool>();
+    public static List<bool> Player_spawn_List_Array = new List<bool>();
+    public static List<bool>Other_spawn_List_Array = new List<bool>();
 
     public Dictionary<string, Hero_Holder> Hero_Holders = new();
     private int[] Host_Client_Value_Index = new int[2];
@@ -240,8 +240,8 @@ public class Spawner : NetworkBehaviour
     
         obj.transform.position = spawnList[position_value];
         Hero_Holder heroHolder = obj.GetComponent<Hero_Holder>();
-        heroHolder.pos = spawnList[position_value];
-        //heroHolder.index = position_value;
+        //heroHolder.pos = spawnList[position_value];
+        heroHolder.index = position_value;
 
     }
     #endregion
