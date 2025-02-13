@@ -15,9 +15,9 @@ public class Character : NetworkBehaviour
     {
         _spriteRenderer.sortingOrder = value;
     }
-    public void GetInitCharacter(string path)
+    public void GetInitCharacter(string path, string rarity)
     {
-        _animator.runtimeAnimatorController = Resources.Load<Hero_Scriptable>("Character_Scriptable/" + path).Animator;
+        _animator.runtimeAnimatorController = Resources.Load<Hero_Scriptable>("Character_Scriptable/"+ rarity + "/"+ path).Animator;
     }
 
     protected void AnimatorChange(string temp, bool trigger)

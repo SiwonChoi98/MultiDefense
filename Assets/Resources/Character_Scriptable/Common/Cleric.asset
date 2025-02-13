@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00fc33067c33a23489ac488696d7bed0, type: 3}
-  m_Name: Bandit
+  m_Name: Cleric
   m_EditorClassIdentifier: 
-  Name: Bandit
-  ATK: 10
-  ATK_Speed: 1.5
-  Range: 1
-  Animator: {fileID: 9100000, guid: effb0056602853041bf14e91d0ec9bdc, type: 2}
+  Name: Cleric
+  ATK: 7
+  ATK_Speed: 1
+  Range: 1.5
+  Animator: {fileID: 9100000, guid: cf1d048f8709adb4c8a56ce7f669249d, type: 2}
+  rare: 1001

@@ -26,6 +26,7 @@ public class Hero_Scriptable : ScriptableObject
     public float Range;
     public RuntimeAnimatorController Animator;
 
+    public Rarity rare;
     public HeroData GetHeroData()
     {
         return new HeroData()

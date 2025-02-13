@@ -15,14 +15,14 @@ public class Hero : Character
     public ScriptableObject m_Data;
 
     private bool isMove = false;
-    public void Initialize(HeroData obj, Hero_Holder heroHolder)
+    public void Initialize(HeroData obj, Hero_Holder heroHolder, string rarity)
     {
         parent_Holder = heroHolder;
         ATK = obj.heroATK;
         AttackRange = obj.heroRange;
         AttackSpeed = obj.heroATK_Speed;
 
-        GetInitCharacter(obj.heroName);
+        GetInitCharacter(obj.heroName, rarity);
     }
 
     public void Position_Change(Hero_Holder holder, List<Vector2> poss, int myIndex)

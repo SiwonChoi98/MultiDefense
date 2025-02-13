@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Schema;
 using NUnit.Framework;
 using Unity.Android.Gradle.Manifest;
 using Unity.Netcode;
@@ -46,6 +47,7 @@ public class Hero_Holder : NetworkBehaviour
         MakeCollider();
         
         SellButton.onClick.AddListener(() => Sell());
+        CompositionButton.onClick.AddListener(() => Composition());
     }
 
     #region  캐릭터 판매
@@ -117,7 +119,61 @@ public class Hero_Holder : NetworkBehaviour
     
     public void Composition()
     {
+        List<Hero_Holder> heroHolders = new();
         
+        heroHolders.Add(this);
+        
+        foreach (var holderData in Spawner.Instance.Hero_Holders)
+        {
+            if (holderData.Value.Holder_Name == Holder_Name && holderData.Value != this)
+            {
+                string temp = LocalID() == (ulong)0 ? "HOST" : "CLIENT";
+                if(holderData.Value.Holder_Part_Name.Contains(temp))
+                {
+                    heroHolders.Add(holderData.Value);
+                }
+                
+            }
+        }
+
+        int cnt = 0;
+        string[] holderTemp = new string[2];
+        bool getBreak = false;
+        for (int i = 0; i < heroHolders.Count; i++)
+        {
+            for (int j = 0; j < heroHolders[i].m_Heros.Count; j++)
+            {
+                if(heroHolders[i].m_Heros.Count > 0)
+                {
+                    holderTemp[cnt] = heroHolders[i].Holder_Part_Name;
+                    cnt++;
+                    if (cnt >= 2)
+                    {
+                        getBreak = true;
+                        break;
+                    }
+                }
+            }
+
+            if (getBreak) break;
+        }
+
+        for (int i = 0; i < holderTemp.Length; i++)
+        {
+            if (holderTemp[i] == "" || holderTemp[i] == null)
+            {
+                Debug.Log("합성에 필요한 영웅이 부족합니다.");
+                return;
+            }
+        }
+
+        for (int i = 0; i < holderTemp.Length; i++)
+        {
+            Spawner.Instance.Hero_Holders[holderTemp[i]].Sell();
+        }
+        
+        Spawner.Instance.Summon("UnCommon");
+    
     }
     public void HeroChange(Hero_Holder holder)
     {
@@ -172,17 +228,17 @@ public class Hero_Holder : NetworkBehaviour
         collider.isTrigger = true;
         collider.size = new Vector2(Spawner.xValue, Spawner.yValue);
     }
-    public void SpawnCharacter(HeroData heroData)
+    public void SpawnCharacter(HeroData heroData, string rarity)
     {
         Holder_Name = heroData.heroName;
         m_Data = heroData;
         if (IsServer)
         {
-            HeroSpawn(LocalID(), heroData);
+            HeroSpawn(LocalID(), heroData, rarity);
         }
     }
     
-    private void HeroSpawn(ulong clientId, HeroData heroData)
+    private void HeroSpawn(ulong clientId, HeroData heroData, string rarity)
     {
         var go = Instantiate(_spawnHero);
         
@@ -192,7 +248,7 @@ public class Hero_Holder : NetworkBehaviour
         //네트워크 오브젝트는 스폰이 된 이후에 자식 위치를 변겨앻야한다.
         go.transform.parent = this.transform;
         
-        ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId, heroData);
+        ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId, heroData, rarity);
     }
 
     private void CheckGetPosition()
@@ -217,7 +273,7 @@ public class Hero_Holder : NetworkBehaviour
     }
     
     [ClientRpc]
-    private void ClientSpawnHeroClientRpc(ulong networkId, ulong clientId, HeroData data)
+    private void ClientSpawnHeroClientRpc(ulong networkId, ulong clientId, HeroData data, string rarity)
     {
         if (Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkId,
                 out NetworkObject networkObject))
@@ -225,7 +281,7 @@ public class Hero_Holder : NetworkBehaviour
             Hero hero = networkObject.GetComponent<Hero>();
             
             m_Heros.Add(hero);
-            networkObject.GetComponent<Hero>().Initialize(data, this);
+            networkObject.GetComponent<Hero>().Initialize(data, this, rarity);
             CheckGetPosition();
         }
     }

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00fc33067c33a23489ac488696d7bed0, type: 3}
-  m_Name: Cleric
+  m_Name: Warrior
   m_EditorClassIdentifier: 
-  Name: Cleric
-  ATK: 7
+  Name: Warrior
+  ATK: 12
   ATK_Speed: 1
-  Range: 1.5
-  Animator: {fileID: 9100000, guid: cf1d048f8709adb4c8a56ce7f669249d, type: 2}
+  Range: 1
+  Animator: {fileID: 9100000, guid: c678084a815277c4c9359d1735ecdad4, type: 2}
+  rare: 1001

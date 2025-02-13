@@ -141,7 +141,7 @@ public class Spawner : NetworkBehaviour
     
     #region 캐릭터 소환
 
-    public void Summon()
+    public void Summon(string rarity)
     {
         // if (Game_Mng.Instance.Money < Game_Mng.Instance.SummonCount)
         //     return;
@@ -151,21 +151,21 @@ public class Spawner : NetworkBehaviour
 
         if (IsClient)
         {
-            ServerHeroSpawnServerRpc(LocalID());
+            ServerHeroSpawnServerRpc(LocalID(), rarity);
         }
         else if(IsServer)
         {
-            HeroSpawn(LocalID());
+            HeroSpawn(LocalID(), rarity);
         }
     }
     [ServerRpc(RequireOwnership = false)]
-    private void ServerHeroSpawnServerRpc(ulong clientId)
+    private void ServerHeroSpawnServerRpc(ulong clientId, string rarity)
     {
-        HeroSpawn(clientId);
+        HeroSpawn(clientId, rarity);
     }
-    private void HeroSpawn(ulong clientId)
+    private void HeroSpawn(ulong clientId, string rarity)
     {
-        Hero_Scriptable[] m_Character_Datas = Resources.LoadAll<Hero_Scriptable>("Character_Scriptable");
+        Hero_Scriptable[] m_Character_Datas = Resources.LoadAll<Hero_Scriptable>("Character_Scriptable/" + rarity);
         var data = m_Character_Datas[UnityEngine.Random.Range(0, m_Character_Datas.Length)];
 
         bool getHero = false;
@@ -178,7 +178,7 @@ public class Spawner : NetworkBehaviour
             {
                 if (dd.Value.m_Heros.Count < 3 && dd.Value.Holder_Name == data.Name)
                 {
-                    dd.Value.SpawnCharacter(data.GetHeroData());
+                    dd.Value.SpawnCharacter(data.GetHeroData(), rarity);
                     getHero = true;
                     break;
                 }
@@ -192,13 +192,13 @@ public class Spawner : NetworkBehaviour
             NetworkObject networkObject = go.GetComponent<NetworkObject>();
             networkObject.Spawn();
             
-            ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId, data.GetHeroData(), Organizers, value);
+            ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId, data.GetHeroData(), Organizers, value, rarity);
         }
         
     }
 
     [ClientRpc]
-    private void ClientSpawnHeroClientRpc(ulong networkId, ulong clientId, HeroData data, string Organizers, int value)
+    private void ClientSpawnHeroClientRpc(ulong networkId, ulong clientId, HeroData data, string Organizers, int value, string rarity)
     {
         if (Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkId,
                 out NetworkObject networkObject))
@@ -218,7 +218,7 @@ public class Spawner : NetworkBehaviour
             
             goHolder.Holder_Part_Name = Organizers;
             
-            networkObject.GetComponent<Hero_Holder>().SpawnCharacter(data);
+            networkObject.GetComponent<Hero_Holder>().SpawnCharacter(data, rarity);
         }
     }
 

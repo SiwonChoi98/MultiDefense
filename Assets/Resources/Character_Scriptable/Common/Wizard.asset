@@ -17,3 +17,4 @@ MonoBehaviour:
   ATK_Speed: 0.5
   Range: 1.5
   Animator: {fileID: 9100000, guid: 195ada6ca68be1245a10bfe821a7002d, type: 2}
+  rare: 1001
