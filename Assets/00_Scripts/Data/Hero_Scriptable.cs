@@ -8,7 +8,7 @@ public struct HeroData : INetworkSerializable
     public int heroATK;
     public float heroATK_Speed;
     public float heroRange;
-    
+    //public Rarity rare;
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
         serializer.SerializeValue(ref heroName);

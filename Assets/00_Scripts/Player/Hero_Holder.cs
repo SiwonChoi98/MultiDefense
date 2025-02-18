@@ -5,6 +5,7 @@ using System.Xml.Schema;
 using NUnit.Framework;
 using Unity.Android.Gradle.Manifest;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class Hero_Holder : NetworkBehaviour
     [SerializeField] private Transform Circle_Range;
     [SerializeField] private Transform SetClick;
     [SerializeField] private Transform GetClick;
-
+    [SerializeField] private GameObject CanvasObject;
     
     public string Holder_Part_Name;
     public string Holder_Name;
@@ -52,16 +53,19 @@ public class Hero_Holder : NetworkBehaviour
 
     #region  캐릭터 판매
 
-    private void Sell()
+    private void Sell(bool getNavigation = true)
     {
-        if (IsClient)
+        if (getNavigation)
+
         {
-            SellServerRpc(LocalID());
+            UI_Main.Instance.GetNavigation(string.Format("영웅을 판매하였습니다. {0}{1}", 
+                Net_Utils.RarityColor(m_Heros[0].HeroRarity), m_Heros[0].HeroName)); 
         }
-        else if(IsServer)
-        {
-            SellCharacter(LocalID());
-        }
+        
+        
+        Net_Utils.HostAndClientMethod(
+            () => SellServerRpc(Net_Utils.LocalID()),
+            () => SellCharacter(Net_Utils.LocalID()));
     }
     
     [ServerRpc(RequireOwnership = false)]
@@ -105,7 +109,7 @@ public class Hero_Holder : NetworkBehaviour
     private void DestroyClientRpc(ulong clientId)
     {
         Spawner.Instance.Hero_Holders.Remove(Holder_Part_Name);
-        if (LocalID() == clientId)
+        if (Net_Utils.IsClientCheck(clientId))
         {
             Spawner.Player_spawn_List_Array[index] = false;
         }
@@ -127,7 +131,7 @@ public class Hero_Holder : NetworkBehaviour
         {
             if (holderData.Value.Holder_Name == Holder_Name && holderData.Value != this)
             {
-                string temp = LocalID() == (ulong)0 ? "HOST" : "CLIENT";
+                string temp = Net_Utils.LocalID() == (ulong)0 ? "HOST" : "CLIENT";
                 if(holderData.Value.Holder_Part_Name.Contains(temp))
                 {
                     heroHolders.Add(holderData.Value);
@@ -169,10 +173,10 @@ public class Hero_Holder : NetworkBehaviour
 
         for (int i = 0; i < holderTemp.Length; i++)
         {
-            Spawner.Instance.Hero_Holders[holderTemp[i]].Sell();
+            Spawner.Instance.Hero_Holders[holderTemp[i]].Sell(false);
         }
         
-        Spawner.Instance.Summon("UnCommon");
+        Spawner.Instance.Summon("UnCommon", true);
     
     }
     public void HeroChange(Hero_Holder holder)
@@ -215,12 +219,15 @@ public class Hero_Holder : NetworkBehaviour
         Circle_Range.localScale = new Vector3(range, range);
         
         Circle_Range.gameObject.SetActive(true);
+        CanvasObject.SetActive(true);
     }
 
     public void ReturnRange()
     {
         Circle_Range.gameObject.SetActive(false);
         Circle_Range.localScale = Vector2.zero;
+        
+        CanvasObject.SetActive(false);
     }
     private void MakeCollider()
     {
@@ -234,7 +241,7 @@ public class Hero_Holder : NetworkBehaviour
         m_Data = heroData;
         if (IsServer)
         {
-            HeroSpawn(LocalID(), heroData, rarity);
+            HeroSpawn(Net_Utils.LocalID(), heroData, rarity);
         }
     }
     
@@ -284,10 +291,5 @@ public class Hero_Holder : NetworkBehaviour
             networkObject.GetComponent<Hero>().Initialize(data, this, rarity);
             CheckGetPosition();
         }
-    }
-    
-    private ulong LocalID()
-    {
-        return Unity.Netcode.NetworkManager.Singleton.LocalClientId;
     }
 }

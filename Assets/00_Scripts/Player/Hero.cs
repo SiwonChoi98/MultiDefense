@@ -13,15 +13,22 @@ public class Hero : Character
     public NetworkObject Target;
     public LayerMask EnemyMask;
     public ScriptableObject m_Data;
-
+    
     private bool isMove = false;
+
+    public string HeroName;
+    public Rarity HeroRarity;
     public void Initialize(HeroData obj, Hero_Holder heroHolder, string rarity)
     {
+        
         parent_Holder = heroHolder;
         ATK = obj.heroATK;
         AttackRange = obj.heroRange;
         AttackSpeed = obj.heroATK_Speed;
 
+        HeroName = obj.heroName;
+        HeroRarity = (Rarity)Enum.Parse(typeof(Rarity), rarity);
+        
         GetInitCharacter(obj.heroName, rarity);
     }
 
