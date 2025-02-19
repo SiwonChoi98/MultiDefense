@@ -120,11 +120,35 @@ public class Spawner : NetworkBehaviour
                         Other_spawn_List_Array.Add(false);
                         break;
                 }
-                
+
+                if (IsServer)
+                {
+                    StartCoroutine(DelayHeroHolderSpawn(player));
+                }
             }
         }
+
+        Host_Client_Value_Index[0] = 0; //Host
+        Host_Client_Value_Index[1] = 0; //Client
     }
 
+    private IEnumerator DelayHeroHolderSpawn(bool player)
+    {
+        var go = Instantiate(_spawnHolder);
+        NetworkObject networkObject = go.GetComponent<NetworkObject>();
+        networkObject.Spawn();
+        
+        string temp = player == true ? "HOST" : "CLIENT";
+        int value = player == true ? 0 : 1;
+        string Organizers = temp + Host_Client_Value_Index[value].ToString();
+        Host_Client_Value_Index[value]++;
+
+        yield return new WaitForSeconds(0.5f);
+        
+        SpawnGridClientRpc(networkObject.NetworkObjectId, Organizers);
+
+    }
+    
     #endregion
     
     #region 캐릭터 소환
@@ -158,8 +182,7 @@ public class Spawner : NetworkBehaviour
     {
         Hero_Scriptable[] m_Character_Datas = Resources.LoadAll<Hero_Scriptable>("Character_Scriptable/" + rarity);
         var data = m_Character_Datas[UnityEngine.Random.Range(0, m_Character_Datas.Length)];
-
-        bool getHero = false;
+        
         string temp = clientId == 0 ? "HOST" : "CLIENT";
         int value = clientId == 0 ? 0 : 1;
         string Organizers = temp + Host_Client_Value_Index[value].ToString();
@@ -174,15 +197,10 @@ public class Spawner : NetworkBehaviour
             existingHolder.SpawnCharacter(data.GetHeroData(), rarity);
             return;
         }
+
+        var networkObject = Hero_Holders[Organizers].GetComponent<NetworkObject>();
         
-        if (getHero == false)
-        {
-            var go = Instantiate(_spawnHolder);
-            NetworkObject networkObject = go.GetComponent<NetworkObject>();
-            networkObject.Spawn();
-            
-            ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, clientId, data.GetHeroData(), Organizers, value, rarity);
-        }
+        ClientSpawnHeroClientRpc(networkObject.NetworkObjectId, data.GetHeroData(), value, rarity);
         
     }
 
@@ -198,28 +216,37 @@ public class Spawner : NetworkBehaviour
 
         return null;
     }
+
     [ClientRpc]
-    private void ClientSpawnHeroClientRpc(ulong networkId, ulong clientId, HeroData data, string Organizers, int value, string rarity)
+    private void SpawnGridClientRpc(ulong networkId, string organizers)
     {
         if (Net_Utils.TryGetSpawnedObject(networkId, out NetworkObject networkObject))
         {
-            bool isPlayer = clientId == Net_Utils.LocalID();
-
+            bool isPlayer;
+            if (organizers.Contains("HOST"))
+            {
+                isPlayer = Net_Utils.LocalID() == 0 ? true : false;
+            }
+            else isPlayer = Net_Utils.LocalID() == 0 ? false : true;
             
-            
+            Hero_Holder goHolder = networkObject.GetComponent<Hero_Holder>();
             SetPositionHero(networkObject, 
                 isPlayer ? Player_spawn_List : Other_spawn_List, 
                 isPlayer ? Player_spawn_List_Array : Other_spawn_List_Array);
             
+            Hero_Holders.Add(organizers, goHolder);
+            goHolder.Holder_Part_Name = organizers;
+        }
+    }
+    [ClientRpc]
+    private void ClientSpawnHeroClientRpc(ulong networkId, HeroData data, int value, string rarity)
+    {
+        if (Net_Utils.TryGetSpawnedObject(networkId, out NetworkObject networkObject))
+        {
             Hero_Holder goHolder = networkObject.GetComponent<Hero_Holder>();
             
-            Hero_Holders.Add(Organizers, goHolder);
             Host_Client_Value_Index[value]++;
-            
-            goHolder.Holder_Part_Name = Organizers;
-            networkObject.GetComponent<Hero_Holder>().SpawnCharacter(data, rarity);
-            //goHolder.SpawnCharacter(data, rarity);
-            
+            goHolder.SpawnCharacter(data, rarity);
         }
     }
 

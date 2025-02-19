@@ -6,16 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4c29668c-1273-4a4e-bb4a-c374d8d6671d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Enum/Enum_Holder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Enum/Enum_Holder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Manager/Game_Mng.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Manager/Game_Mng.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/UI/Asset_Get.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Animations/UI/Asset_Get.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/UI/Text (TMP).controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Animations/UI/Text (TMP).controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/HERO_HOLDER.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/HERO_HOLDER.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/dark_slot.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/UI/Data_gameplay_1/dark_slot.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Monster.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Monster.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Spawner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Spawner.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/Font/BMJUA_otf SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Font/BMJUA_otf SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
     </list>
@@ -126,6 +123,8 @@
       <workItem from="1739418233716" duration="3114000" />
       <workItem from="1739498950543" duration="4017000" />
       <workItem from="1739853035379" duration="6343000" />
+      <workItem from="1739943595793" duration="598000" />
+      <workItem from="1739946998473" duration="3568000" />
     </task>
     <servers />
   </component>
