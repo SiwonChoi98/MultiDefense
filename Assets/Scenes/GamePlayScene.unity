@@ -950,6 +950,11 @@ MonoBehaviour:
   HeroCount_T: {fileID: 1633109540}
   MoneyAnimation: {fileID: 1207428654}
   SummonButton: {fileID: 1064674020}
+  TrailPrefabs: {fileID: 4769529940929172767, guid: 72daecbddd059f14f89b2611971f6184, type: 3}
+  trailSpeed: 0.4
+  yPosMin: 1
+  yPosMax: 3
+  xPos: 5
 --- !u!1 &264243412
 GameObject:
   m_ObjectHideFlags: 0

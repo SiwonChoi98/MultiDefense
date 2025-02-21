@@ -33,7 +33,7 @@ public class Spawner : NetworkBehaviour
     public Dictionary<string, Hero_Holder> Hero_Holders = new();
     private int[] Host_Client_Value_Index = new int[2];
     public static float xValue, yValue;
-    
+    private Hero_Scriptable data;
     public void Holder_Position_Set(string value01, string value02)
     {
         Net_Utils.HostAndClientMethod(
@@ -152,21 +152,15 @@ public class Spawner : NetworkBehaviour
     #endregion
     
     #region 캐릭터 소환
-
-    public void Summon(string rarity, bool NoneLimit = false)
+    
+    public void Summon(string rarity, Hero_Scriptable scriptData = null)
     {
-        if (NoneLimit == false)
+
+        data = scriptData;
+        if (scriptData == null)
         {
-            if (Game_Mng.Instance.Money < Game_Mng.Instance.SummonCount)
-                return;
-            if (Game_Mng.Instance.HeroCount >= Game_Mng.Instance.HeroMaximumCount)
-                return;
-        
-            Game_Mng.Instance.Money -= Game_Mng.Instance.SummonCount;
-            Game_Mng.Instance.SummonCount += 2;
-            Game_Mng.Instance.HeroCount++;
+            data = Data(rarity);
         }
-        
         
         Net_Utils.HostAndClientMethod(
             () => ServerHeroSpawnServerRpc(Net_Utils.LocalID(), rarity),
@@ -178,11 +172,17 @@ public class Spawner : NetworkBehaviour
     {
         HeroSpawn(clientId, rarity);
     }
-    private void HeroSpawn(ulong clientId, string rarity)
+    
+    public Hero_Scriptable Data(string rarity)
     {
         Hero_Scriptable[] m_Character_Datas = Resources.LoadAll<Hero_Scriptable>("Character_Scriptable/" + rarity);
         var data = m_Character_Datas[UnityEngine.Random.Range(0, m_Character_Datas.Length)];
-        
+
+        return data;
+    }
+    
+    private void HeroSpawn(ulong clientId, string rarity)
+    {
         string temp = clientId == 0 ? "HOST" : "CLIENT";
         int value = clientId == 0 ? 0 : 1;
         string Organizers = temp + Host_Client_Value_Index[value].ToString();
@@ -204,6 +204,19 @@ public class Spawner : NetworkBehaviour
         
     }
 
+    public Vector3 HolderPosition(Hero_Scriptable data)
+    {
+        string temp = Net_Utils.LocalID() == 0 ? "HOST" : "CLIENT";
+        int value = Net_Utils.LocalID() == 0 ? 0 : 1;
+        string Organizers = temp + Host_Client_Value_Index[value].ToString();
+        var existingHolder = GetExistingHolder(temp, data.Name);
+        if (existingHolder != null)
+        {
+            return existingHolder.transform.position;
+        }
+
+        return Hero_Holders[Organizers].transform.position;
+    }
     private Hero_Holder GetExistingHolder(string clientKey, string heroName)
     {
         foreach (var holder in Hero_Holders)
