@@ -168,6 +168,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   m_Data: {fileID: 0}
+  HeroName: 
+  HeroRarity: 0
+  SpawnParticle: {fileID: 9156452373932204896, guid: 8b2a434a162844d46a23d8a39a38a48e, type: 3}
 --- !u!1 &5610193687219626771
 GameObject:
   m_ObjectHideFlags: 0

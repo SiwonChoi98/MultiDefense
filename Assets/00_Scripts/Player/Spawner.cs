@@ -163,14 +163,14 @@ public class Spawner : NetworkBehaviour
         }
         
         Net_Utils.HostAndClientMethod(
-            () => ServerHeroSpawnServerRpc(Net_Utils.LocalID(), rarity),
-            () => HeroSpawn(Net_Utils.LocalID(), rarity));
+            () => ServerHeroSpawnServerRpc(Net_Utils.LocalID(), rarity, data.name),
+            () => HeroSpawn(Net_Utils.LocalID(), rarity, data.name));
         
     }
     [ServerRpc(RequireOwnership = false)]
-    private void ServerHeroSpawnServerRpc(ulong clientId, string rarity)
+    private void ServerHeroSpawnServerRpc(ulong clientId, string rarity, string dataName)
     {
-        HeroSpawn(clientId, rarity);
+        HeroSpawn(clientId, rarity, dataName);
     }
     
     public Hero_Scriptable Data(string rarity)
@@ -181,8 +181,9 @@ public class Spawner : NetworkBehaviour
         return data;
     }
     
-    private void HeroSpawn(ulong clientId, string rarity)
+    private void HeroSpawn(ulong clientId, string rarity, string dataName)
     {
+        data = Resources.Load<Hero_Scriptable>("Character_Scriptable/" + rarity + "/" + dataName);
         string temp = clientId == 0 ? "HOST" : "CLIENT";
         int value = clientId == 0 ? 0 : 1;
         string Organizers = temp + Host_Client_Value_Index[value].ToString();

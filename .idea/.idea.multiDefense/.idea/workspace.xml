@@ -6,10 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="4c29668c-1273-4a4e-bb4a-c374d8d6671d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Archor.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Archor.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Bandit.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Bandit.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Cleric.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Cleric.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Warrior.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Warrior.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Wizard.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Wizard.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/UnCommon/UnCommon01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/UnCommon/UnCommon01.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/UnCommon/UnCommon02.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/UnCommon/UnCommon02.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/UnCommon/UnCommon03.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/UnCommon/UnCommon03.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +35,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Manager/Character_Mng.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Network/Net_Scene_Mng.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Other/Camera_Ray.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Player/Bullet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@001b54a8988a/Editor/ViewSwitcher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.netcode.gameobjects@f2477a6c90fe/Runtime/Core/NetworkBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
@@ -121,6 +131,7 @@
       <workItem from="1739943595793" duration="598000" />
       <workItem from="1739946998473" duration="3568000" />
       <workItem from="1740106458187" duration="3265000" />
+      <workItem from="1740361288003" duration="4920000" />
     </task>
     <servers />
   </component>

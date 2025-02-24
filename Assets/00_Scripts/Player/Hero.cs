@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil;
+using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -12,14 +14,16 @@ public class Hero : Character
     public float AttackSpeed = 1.0f;
     public NetworkObject Target;
     public LayerMask EnemyMask;
-    public ScriptableObject m_Data;
+    public Hero_Scriptable m_Data;
     
     private bool isMove = false;
 
     public string HeroName;
     public Rarity HeroRarity;
+    [SerializeField] private GameObject SpawnParticle;
     public void Initialize(HeroData obj, Hero_Holder heroHolder, string rarity)
     {
+        m_Data = Resources.Load<Hero_Scriptable>("Character_Scriptable/" + rarity + "/" +obj.heroName);
         
         parent_Holder = heroHolder;
         ATK = obj.heroATK;
@@ -30,6 +34,8 @@ public class Hero : Character
         HeroRarity = (Rarity)Enum.Parse(typeof(Rarity), rarity);
         
         GetInitCharacter(obj.heroName, rarity);
+
+        Instantiate(SpawnParticle, parent_Holder.transform.position, Quaternion.identity);
     }
 
     public void Position_Change(Hero_Holder holder, List<Vector2> poss, int myIndex)
@@ -99,7 +105,8 @@ public class Hero : Character
             {
                 AttackSpeed = 0.0f;
                 AnimatorChange("DoAttack", true);
-                AttackMonsterServerRpc(Target.NetworkObjectId);
+                //AttackMonsterServerRpc(Target.NetworkObjectId);
+                GetBullet();
             }
         }
         else
@@ -108,8 +115,20 @@ public class Hero : Character
         }
     }
 
+    public void GetBullet()
+    {
+        var go = Instantiate(m_Data.HitPs, transform.position + new Vector3(0.0f, 0.1f), Quaternion.identity);
+        go.Init(transform.transform, this);
+    }
+
+    public void SetDamage()
+    {
+        if(Target != null)
+            AttackMonsterServerRpc(Target.NetworkObjectId);
+    }
+    
     [ServerRpc(RequireOwnership = false)]
-    private void AttackMonsterServerRpc(ulong monsterId)
+    public void AttackMonsterServerRpc(ulong monsterId)
     {
         if (Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(monsterId,
                 out var spawnObject))
