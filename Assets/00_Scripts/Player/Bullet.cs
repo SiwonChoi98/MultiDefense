@@ -19,10 +19,11 @@ public class Bullet : MonoBehaviour
     {
         float distance = Vector2.Distance(transform.position, target.position);
 
-        if (distance > 0.1f)
+        if (distance > 0.03f)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, m_Speed * Time.deltaTime);
-        }else if (distance <= 0.1f)
+        }
+        else if (distance <= 0.03f)
         {
             Instantiate(distroy_ps, transform.position, Quaternion.identity);
             parent_Hero.SetDamage();

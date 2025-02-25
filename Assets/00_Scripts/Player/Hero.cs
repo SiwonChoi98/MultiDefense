@@ -117,7 +117,7 @@ public class Hero : Character
 
     public void GetBullet()
     {
-        var go = Instantiate(m_Data.HitPs, transform.position + new Vector3(0.0f, 0.1f), Quaternion.identity);
+        var go = Instantiate(m_Data.bullet, transform.position + new Vector3(0.0f, 0.1f), Quaternion.identity);
         go.Init(transform.transform, this);
     }
 

@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using Unity.Services.Vivox;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,9 +9,12 @@ public class Camera_Ray : NetworkBehaviour
     private Camera cam;
     private Hero_Holder holder = null;
     private Hero_Holder Move_Holder = null;
+
+    private string HostAndClient = "";
     private void Start()
     {
         cam = Camera.main;
+        HostAndClient = Net_Utils.LocalID() == (ulong)0 ? "HOST" : "CLIENT";
     }
     private void Update()
     {
@@ -45,6 +49,13 @@ public class Camera_Ray : NetworkBehaviour
         if (hit.collider != null)
         {
             holder = hit.collider.GetComponent<Hero_Holder>();
+
+            if (holder.Holder_Name == "" || holder.Holder_Name == null)
+            {
+                holder = null;
+                return;
+            }
+            
             int value = (int)NetworkManager.Singleton.LocalClientId;
             bool CanGet = false;
             if (value == 0) CanGet = holder.Holder_Part_Name.Contains("HOST");
@@ -61,9 +72,13 @@ public class Camera_Ray : NetworkBehaviour
             
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-
+            
             if (hit.collider != null && hit.collider.transform != holder.transform)
             {
+                if (hit.collider.GetComponent<Hero_Holder>() == null) return;
+                if (hit.collider.GetComponent<Hero_Holder>().Holder_Part_Name.Contains(HostAndClient) == false)
+                    return;
+                
                 if (Move_Holder != null)
                 {
                     Move_Holder.S_SetClick(false);

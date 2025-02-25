@@ -26,7 +26,7 @@ public class Hero_Holder : NetworkBehaviour
     public List<Hero> m_Heros = new();
     
     public int index;
-    private HeroData m_Data;
+    public HeroData m_Data;
     
     public readonly Vector2[] One = { Vector2.zero };
     public readonly Vector2[] Two =
@@ -202,6 +202,7 @@ public class Hero_Holder : NetworkBehaviour
         {
             m_Heros[i].Position_Change(holder, poss, i);
         }
+        
     }
     public void G_GetClick(bool active)
     {

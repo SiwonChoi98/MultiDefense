@@ -18,4 +18,4 @@ MonoBehaviour:
   Range: 1.5
   Animator: {fileID: 9100000, guid: cf1d048f8709adb4c8a56ce7f669249d, type: 2}
   rare: 1002
-  HitPs: {fileID: 4704131622247468120, guid: 982b1604acb1a4c4d89f8985bd05aef7, type: 3}
+  bullet: {fileID: 8003206789007073673, guid: 361d35fb11b3eb64791b66e4e795f45d, type: 3}

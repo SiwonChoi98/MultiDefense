@@ -59,7 +59,8 @@ public class Spawner : NetworkBehaviour
 
         (holder1.Holder_Name, holder2.Holder_Name) = (holder2.Holder_Name, holder1.Holder_Name);
         (holder1.m_Heros, holder2.m_Heros) = (new List<Hero>(holder2.m_Heros), new List<Hero>(holder1.m_Heros));
-        
+        (holder1.m_Data, holder2.m_Data) = (holder2.m_Data, holder1.m_Data);
+
     }
     private void GetPositionSet(string value01, string value02)
     {
