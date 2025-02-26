@@ -17,5 +17,5 @@ MonoBehaviour:
   ATK_Speed: 1
   Range: 1
   Animator: {fileID: 9100000, guid: c678084a815277c4c9359d1735ecdad4, type: 2}
-  rare: 1001
+  rare: 0
   bullet: {fileID: 4704131622247468120, guid: 982b1604acb1a4c4d89f8985bd05aef7, type: 3}

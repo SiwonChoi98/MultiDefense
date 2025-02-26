@@ -9,7 +9,17 @@ using UnityEngine;
 public class Hero : Character
 {
     private Hero_Holder parent_Holder;
-    public int ATK;
+
+    private double baseATK;
+    public double ATK 
+    {
+        get
+        {
+            float upgradeBonus = Game_Mng.Instance.Upgrade[UpgradeCount()] != 0 ? Game_Mng.Instance.Upgrade[UpgradeCount()] * 0.1f : 0;
+            return baseATK + (1 + upgradeBonus);
+        }
+        //set => baseATK = Math.Max(0, value);
+    }
     public float AttackRange = 1.0f;
     public float AttackSpeed = 1.0f;
     public NetworkObject Target;
@@ -20,18 +30,39 @@ public class Hero : Character
 
     public string HeroName;
     public Rarity HeroRarity;
+    public Color[] colors;
+    public SpriteRenderer circleRanderer;
     [SerializeField] private GameObject SpawnParticle;
+
+    private int UpgradeCount()
+    {
+        switch (m_Data.rare)
+        {
+            case Rarity.Common:
+            case Rarity.UnCommon:
+            case Rarity.Rare:
+                return 0;
+            case Rarity.Hero:
+                return 1;
+            case Rarity.Legendar:
+                return 2;
+        }
+
+        return -1;
+    }
     public void Initialize(HeroData obj, Hero_Holder heroHolder, string rarity)
     {
         m_Data = Resources.Load<Hero_Scriptable>("Character_Scriptable/" + rarity + "/" +obj.heroName);
         
         parent_Holder = heroHolder;
-        ATK = obj.heroATK;
+        baseATK = obj.heroATK;
         AttackRange = obj.heroRange;
         AttackSpeed = obj.heroATK_Speed;
 
         HeroName = obj.heroName;
         HeroRarity = (Rarity)Enum.Parse(typeof(Rarity), rarity);
+        
+        circleRanderer.color = colors[(int)HeroRarity];
         
         GetInitCharacter(obj.heroName, rarity);
 
@@ -118,7 +149,7 @@ public class Hero : Character
     public void GetBullet()
     {
         var go = Instantiate(m_Data.bullet, transform.position + new Vector3(0.0f, 0.1f), Quaternion.identity);
-        go.Init(transform.transform, this);
+        go.Init(Target.transform, this);
     }
 
     public void SetDamage()

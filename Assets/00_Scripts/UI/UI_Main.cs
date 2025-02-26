@@ -35,20 +35,43 @@ public class UI_Main : MonoBehaviour
 
     [SerializeField] private Button SummonButton;
 
-    [Header("trail")]
+    [Header("##trail")]
     
     [SerializeField] private GameObject TrailPrefabs;
     [UnityEngine.Range(0.0f, 30.0f)] 
     [SerializeField] private float trailSpeed;
     [SerializeField] private float yPosMin, yPosMax;
     [SerializeField] private float xPos;
-    
+
+    [Header("##Upgrade")] 
+    [SerializeField] private TextMeshProUGUI u_Money_T;
+    [SerializeField] private TextMeshProUGUI[] u_Upgrade_T;
+    [SerializeField] private TextMeshProUGUI[] u_Upgrade_Asset_T;
+
+    [Header("##Others")] 
+    [SerializeField] private GameObject WavePopUp_Object;
+    [SerializeField] private TextMeshProUGUI WaveText_Object;
     private void Start()
     {
         Game_Mng.Instance.OnMoneyUp += Money_Anim;
         Game_Mng.Instance.OnTimerUp += WavePoint;
         
         SummonButton.onClick.AddListener(() => ClickSummon());
+    }
+
+    public void GetWavePopup()
+    {
+        WavePopUp_Object.SetActive(true);
+
+        WaveText_Object.text = string.Format("WAVE {0}", Game_Mng.Instance.Wave);
+    }
+    public void UpgradeButton(int value)
+    {
+        if (Game_Mng.Instance.Money < 30 + Game_Mng.Instance.Upgrade[value])
+            return;
+
+        Game_Mng.Instance.Money -= 30 + Game_Mng.Instance.Upgrade[value];
+        Game_Mng.Instance.Upgrade[value]++;
     }
     private void Update()
     {
@@ -57,6 +80,14 @@ public class UI_Main : MonoBehaviour
         HeroCount_T.text = UpdateHeroCountText();
         Money_T.text = Game_Mng.Instance.Money.ToString();
         Summon_T.text = Game_Mng.Instance.SummonCount.ToString();
+        u_Money_T.text = Game_Mng.Instance.Money.ToString();
+
+        for (int i = 0; i < u_Upgrade_T.Length; i++)
+        {
+            u_Upgrade_T[i].text = "Lv." + (Game_Mng.Instance.Upgrade[i]+1).ToString();
+            u_Upgrade_Asset_T[i].text = (30 + Game_Mng.Instance.Upgrade[i]).ToString();
+        }
+        
         Summon_T.color = Game_Mng.Instance.Money >= Game_Mng.Instance.SummonCount ? Color.white : Color.red;
         
     }

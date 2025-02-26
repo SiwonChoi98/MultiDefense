@@ -13,14 +13,27 @@ public class Monster : Character
     [SerializeField] private Image m_Fill, m_Fill_Deco;
     
     private int target_value = 0;
-    public int HP = 0, MaxHp = 0;
+    public double HP = 0, MaxHp = 0;
     private bool _isDead = false;
 
     private List<Vector2> move_list = new();
     public override void Awake()
     {
-        HP = MaxHp;
+        HP = CalculateMonsterHp(Game_Mng.Instance.Wave);
         base.Awake();
+    }
+    //지수적 증가 공식
+    private double CalculateMonsterHp(int waveLevel)
+    {
+        double baseHp = 50.0f;
+
+        double powerMultiplier = Mathf.Pow(1.1f, waveLevel);
+        if (waveLevel % 10 == 0)
+        {
+            powerMultiplier += 0.05f * (waveLevel / 10);
+        }
+
+        return baseHp * powerMultiplier;
     }
 
     public void Init(List<Vector2> vectorList)
@@ -47,7 +60,7 @@ public class Monster : Character
         }
     }
 
-    public void GetDamage(int dmg)
+    public void GetDamage(double dmg)
     {
         if (!IsServer) return;
         if (_isDead) return;
@@ -56,10 +69,10 @@ public class Monster : Character
         NotifyClientUpdateClientRpc(HP -= dmg, dmg);
     }
 
-    private void GetDamageMonster(int dmg)
+    private void GetDamageMonster(double dmg)
     {
         HP -= dmg;
-        m_Fill.fillAmount = (float) HP / MaxHp;
+        m_Fill.fillAmount = (float)(HP /MaxHp);
         Instantiate(_hitText, transform.position, Quaternion.identity).Initalize(dmg);
         
         if (HP <= 0)
@@ -73,10 +86,10 @@ public class Monster : Character
         }
     }
     [ClientRpc]
-    public void NotifyClientUpdateClientRpc(int hp, int dmg)
+    public void NotifyClientUpdateClientRpc(double hp, double dmg)
     {
         HP = hp;
-        m_Fill.fillAmount = (float) HP / MaxHp;
+        m_Fill.fillAmount = (float)(HP / MaxHp);
         Instantiate(_hitText, transform.position, Quaternion.identity).Initalize(dmg);
         
         if (HP <= 0)

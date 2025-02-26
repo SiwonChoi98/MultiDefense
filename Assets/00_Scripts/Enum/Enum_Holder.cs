@@ -8,9 +8,9 @@ public enum HostType
 }
 public enum Rarity
 {
-    Common = 1001,
-    UnCommon = 1002,
-    Rare = 1003,
-    Hero = 1004,
-    Legendar = 1005
+    Common = 0,
+    UnCommon = 1,
+    Rare = 2,
+    Hero = 3,
+    Legendar = 4
 }

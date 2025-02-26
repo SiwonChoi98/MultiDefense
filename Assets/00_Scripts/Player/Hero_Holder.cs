@@ -100,15 +100,16 @@ public class Hero_Holder : NetworkBehaviour
     private void DestroyServerRpc(ulong clientId)
     {
         DestroyClientRpc(clientId);
-        
-        NetworkObject holderObj = Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects[NetworkObjectId];
-        holderObj.Despawn();
+
+        Holder_Name = "";
+        // NetworkObject holderObj = Unity.Netcode.NetworkManager.Singleton.SpawnManager.SpawnedObjects[NetworkObjectId];
+        // holderObj.Despawn();
     }
 
     [ClientRpc]
     private void DestroyClientRpc(ulong clientId)
     {
-        Spawner.Instance.Hero_Holders.Remove(Holder_Part_Name);
+        //Spawner.Instance.Hero_Holders.Remove(Holder_Part_Name);
         if (Net_Utils.IsClientCheck(clientId))
         {
             Spawner.Player_spawn_List_Array[index] = false;
@@ -175,7 +176,7 @@ public class Hero_Holder : NetworkBehaviour
         {
             Spawner.Instance.Hero_Holders[holderTemp[i]].Sell(false);
         }
-        
+        ReturnRange();
         Spawner.Instance.Summon("UnCommon");
     
     }

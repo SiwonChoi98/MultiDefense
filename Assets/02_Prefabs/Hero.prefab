@@ -160,7 +160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  ATK: 0
   AttackRange: 1
   AttackSpeed: 1
   Target: {fileID: 0}
@@ -170,6 +169,13 @@ MonoBehaviour:
   m_Data: {fileID: 0}
   HeroName: 
   HeroRarity: 0
+  colors:
+  - {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 0.5882353}
+  - {r: 0.68203926, g: 1, b: 0.514151, a: 0.5882353}
+  - {r: 0.45882356, g: 0.6742753, b: 1, a: 0.5882353}
+  - {r: 0.8839866, g: 0.43867922, b: 1, a: 0.5882353}
+  - {r: 1, g: 0.4198113, b: 0.4198113, a: 0.5882353}
+  circleRanderer: {fileID: 5178661098422446598}
   SpawnParticle: {fileID: 9156452373932204896, guid: 8b2a434a162844d46a23d8a39a38a48e, type: 3}
 --- !u!1 &5610193687219626771
 GameObject:

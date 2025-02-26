@@ -6,16 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4c29668c-1273-4a4e-bb4a-c374d8d6671d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Other/Camera_Ray.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Other/Camera_Ray.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Bullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Enum/Enum_Holder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Enum/Enum_Holder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Manager/Game_Mng.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Manager/Game_Mng.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Other/HitText.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Other/HitText.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero_Holder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Ps/CFXR Electrified 3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Ps/CFXR Electrified 3.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Ps/CFXR4 Sun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Ps/CFXR4 Sun.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/TrailEffect.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/TrailEffect.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/Font/BMJUA_otf SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Font/BMJUA_otf SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Hero.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Archor.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Archor.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Bandit.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Bandit.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Cleric.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Cleric.asset" afterDir="false" />
@@ -48,6 +46,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.netcode.gameobjects@f2477a6c90fe/Runtime/Core/NetworkBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.netcode.gameobjects@f2477a6c90fe/Runtime/Logging/NetworkLog.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.netcode.gameobjects@f2477a6c90fe/Runtime/Messaging/Messages/RpcMessages.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@24b10291b18f/Editor/TMP/TMP_BaseEditorPanel.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -140,6 +139,9 @@
       <workItem from="1740106458187" duration="3265000" />
       <workItem from="1740361288003" duration="4920000" />
       <workItem from="1740453002214" duration="5599000" />
+      <workItem from="1740547590660" duration="5132000" />
+      <workItem from="1740552773322" duration="274000" />
+      <workItem from="1740553228489" duration="437000" />
     </task>
     <servers />
   </component>
