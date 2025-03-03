@@ -51,6 +51,10 @@ public class UI_Main : MonoBehaviour
     [Header("##Others")] 
     [SerializeField] private GameObject WavePopUp_Object;
     [SerializeField] private TextMeshProUGUI WaveText_Object;
+    [SerializeField] private TextMeshProUGUI WaveBossName;
+    
+    private static readonly int Boss = Animator.StringToHash("Boss");
+
     private void Start()
     {
         Game_Mng.Instance.OnMoneyUp += Money_Anim;
@@ -59,11 +63,18 @@ public class UI_Main : MonoBehaviour
         SummonButton.onClick.AddListener(() => ClickSummon());
     }
 
-    public void GetWavePopup()
+    public void GetWavePopup(bool getBoss)
     {
         WavePopUp_Object.SetActive(true);
 
         WaveText_Object.text = string.Format("WAVE {0}", Game_Mng.Instance.Wave);
+
+        if (getBoss)
+        {
+            Animator animator = WavePopUp_Object.GetComponent<Animator>();
+            animator.SetTrigger(Boss);
+            WaveBossName.text = Game_Mng.Instance.b_data.BossDatas[(int)(Game_Mng.Instance.Wave / 10) - 1].BossName;
+        }
     }
     public void UpgradeButton(int value)
     {

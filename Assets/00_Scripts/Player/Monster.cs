@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class Monster : Character
 {
+    public bool Boss;
+    
     [SerializeField] private float m_Speed;
     [SerializeField] private HitText _hitText;
     [SerializeField] private Image m_Fill, m_Fill_Deco;
@@ -20,6 +22,8 @@ public class Monster : Character
     public override void Awake()
     {
         HP = CalculateMonsterHp(Game_Mng.Instance.Wave);
+        MaxHp = HP;
+        
         base.Awake();
     }
     //지수적 증가 공식
@@ -33,7 +37,7 @@ public class Monster : Character
             powerMultiplier += 0.05f * (waveLevel / 10);
         }
 
-        return baseHp * powerMultiplier;
+        return baseHp * powerMultiplier * (Boss ? 10 : 1);
     }
 
     public void Init(List<Vector2> vectorList)

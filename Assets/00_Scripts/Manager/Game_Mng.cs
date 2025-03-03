@@ -16,6 +16,7 @@ public class Game_Mng : NetworkBehaviour
         {
             Instance = this;
         }
+        b_data = Resources.Load<Boss_Scriptable>("Boss/Boss_Scriptable");
     }
 
     public float Timer = 60.0f;
@@ -32,7 +33,7 @@ public class Game_Mng : NetworkBehaviour
     public event OnTimerEventHandler OnTimerUp;
     
     public List<Monster> Monsters = new();
-
+    public Boss_Scriptable b_data;
     private void Update()
     {
         if (IsServer)
@@ -87,7 +88,14 @@ public class Game_Mng : NetworkBehaviour
 
         if (getWaveUp)
         {
-            UI_Main.Instance.GetWavePopup();
+            bool getBossCheck = false;
+            
+            if (Wave % 10 == 0)
+            {
+                getBossCheck = true;
+                Spawner.Instance.BossSpawn();
+            }
+            UI_Main.Instance.GetWavePopup(getBossCheck);
         }
         
         OnTimerUp?.Invoke();
