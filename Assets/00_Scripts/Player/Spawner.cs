@@ -308,6 +308,16 @@ public class Spawner : NetworkBehaviour
         spawn_Monster_Coroutine = StartCoroutine(Spawn_Monster_Coroutine(getBoss));
     }
 
+    public void ReMonsterSpawn()
+    {
+        //예외 처리
+        if (spawn_Monster_Coroutine != null)
+        {
+            StopCoroutine(spawn_Monster_Coroutine);
+        }
+        
+        spawn_Monster_Coroutine = StartCoroutine(Spawn_Monster_Coroutine(false));
+    }
     public void BossSpawn()
     {
         if (spawn_Monster_Coroutine != null)
@@ -343,7 +353,7 @@ public class Spawner : NetworkBehaviour
         NetworkObject networkObject = go.GetComponent<NetworkObject>();
         networkObject.Spawn();
 
-        Game_Mng.Instance.AddMonster(go);
+        Game_Mng.Instance.AddMonster(go, getBoss);
         ClientMonsterSetClientRpc(networkObject.NetworkObjectId, clientId);
     }
 

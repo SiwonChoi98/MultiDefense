@@ -15,3 +15,5 @@ MonoBehaviour:
   BossDatas:
   - BossName: "\uB808\uB4DC \uC2AC\uB77C\uC784"
     BossPrefab: {fileID: 7219707728199377842, guid: 16978290971604e49a08f9b7a2387b7a, type: 3}
+  - BossName: "\uB808\uB4DC \uC2AC\uB77C\uC784 Ver.2"
+    BossPrefab: {fileID: 7219707728199377842, guid: 16978290971604e49a08f9b7a2387b7a, type: 3}

@@ -48,10 +48,12 @@ public class UI_Main : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] u_Upgrade_T;
     [SerializeField] private TextMeshProUGUI[] u_Upgrade_Asset_T;
 
-    [Header("##Others")] 
+    [Header("##Boss")] 
     [SerializeField] private GameObject WavePopUp_Object;
     [SerializeField] private TextMeshProUGUI WaveText_Object;
     [SerializeField] private TextMeshProUGUI WaveBossName;
+    [SerializeField] private GameObject BossWaveCount;
+    [SerializeField] private TextMeshProUGUI BossTimer_T;
     
     private static readonly int Boss = Animator.StringToHash("Boss");
 
@@ -75,6 +77,7 @@ public class UI_Main : MonoBehaviour
             animator.SetTrigger(Boss);
             WaveBossName.text = Game_Mng.Instance.b_data.BossDatas[(int)(Game_Mng.Instance.Wave / 10) - 1].BossName;
         }
+        BossWaveCount.SetActive(getBoss);
     }
     public void UpgradeButton(int value)
     {
@@ -193,8 +196,10 @@ public class UI_Main : MonoBehaviour
 
     public void WavePoint()
     {
-        Timer_T.text = UpdateTimerText();
+        Timer_T.text = Game_Mng.Instance.GetBoss == false ? UpdateTimerText() : "In Boss!";
         Wave_T.text = "WAVE : " + Game_Mng.Instance.Wave;
+
+        BossTimer_T.text = UpdateTimerText();
     }
 
     private string UpdateTimerText()

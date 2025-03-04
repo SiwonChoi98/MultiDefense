@@ -10,12 +10,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Spawner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/UI/UI_Main.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01_Animations/UI/Wave_Animation.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01_Animations/UI/Wave_Animation.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_attack_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_attack_1-sheet.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_die_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_die_1-sheet.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_run_1-sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Character/red_slime/Red_run_1-sheet.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/Font/BMJUA_otf SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Font/BMJUA_otf SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Boss/Boss_Scriptable.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Boss/Boss_Scriptable.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlayScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,6 +135,7 @@
       <workItem from="1740553228489" duration="437000" />
       <workItem from="1740902156071" duration="789000" />
       <workItem from="1740982977328" duration="4319000" />
+      <workItem from="1741059796330" duration="2091000" />
     </task>
     <servers />
   </component>

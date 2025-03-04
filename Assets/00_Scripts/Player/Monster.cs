@@ -121,7 +121,7 @@ public class Monster : Character
 
         if (IsServer)
         {
-            Game_Mng.Instance.RemoveMonster(this);
+            Game_Mng.Instance.RemoveMonster(this, Boss);
             this.gameObject.SetActive(false);
             Destroy(gameObject);
         }

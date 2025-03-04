@@ -29,10 +29,13 @@ public class Game_Mng : NetworkBehaviour
     public int Money;
     public int SummonCount;
     public int MonsterCount;
+
+    public bool GetBoss = false;
     public event OnMoneyEventHandler OnMoneyUp;
     public event OnTimerEventHandler OnTimerUp;
     
     public List<Monster> Monsters = new();
+    public List<Monster> Boss_Monsters = new();
     public Boss_Scriptable b_data;
     private void Update()
     {
@@ -46,6 +49,11 @@ public class Game_Mng : NetworkBehaviour
             }
             else
             {
+                if (GetBoss)
+                {
+                    Debug.Log("게임 실패");
+                    return;
+                }
                 Wave++;
                 GetWaveUp = true;
                 Timer = 60f;
@@ -61,16 +69,37 @@ public class Game_Mng : NetworkBehaviour
             NotifyGetMoneyClientRpc(value);
         }
     }
-    public void AddMonster(Monster monster)
+    public void AddMonster(Monster monster, bool boss = false)
     {
-        Monsters.Add(monster);
+        if (boss)
+        {
+            Boss_Monsters.Add(monster);
+        }
+        else
+        {
+            Monsters.Add(monster);
+        }
+
         MonsterCount++;
         UpdateMonsterCountOnClients();
     }
 
-    public void RemoveMonster(Monster monster)
+    public void RemoveMonster(Monster monster, bool boss = false)
     {
-        Monsters.Remove(monster);
+        if (boss)
+        {
+            Boss_Monsters.Remove(monster);
+            if (Boss_Monsters.Count == 0)
+            {
+                GetBoss = false;
+                Timer = 0.0f;
+            }
+        }
+        else
+        {
+            Monsters.Remove(monster);
+        }
+        
         MonsterCount--;
         UpdateMonsterCountOnClients();
     }
@@ -88,14 +117,19 @@ public class Game_Mng : NetworkBehaviour
 
         if (getWaveUp)
         {
-            bool getBossCheck = false;
+            GetBoss = false;
             
             if (Wave % 10 == 0)
             {
-                getBossCheck = true;
+                GetBoss = true;
                 Spawner.Instance.BossSpawn();
             }
-            UI_Main.Instance.GetWavePopup(getBossCheck);
+            else
+            {
+                Spawner.Instance.ReMonsterSpawn();
+            }
+            
+            UI_Main.Instance.GetWavePopup(GetBoss);
         }
         
         OnTimerUp?.Invoke();
