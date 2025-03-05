@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -26,6 +27,11 @@ public class Monster : Character
     [SerializeField] private Color slowColor;
     private float currentSlowAmount;
     private float currentSlowDuration;
+    
+    //스턴
+    private Coroutine stunCoroutine;
+    private bool isStun = false;
+    [SerializeField] private GameObject stunPs;
     public override void Awake()
     {
         HP = CalculateMonsterHp(Game_Mng.Instance.Wave);
@@ -57,7 +63,7 @@ public class Monster : Character
         m_Fill_Deco.fillAmount = Mathf.Lerp(m_Fill_Deco.fillAmount, m_Fill.fillAmount, Time.deltaTime * 2.0f);
         
         if (_isDead) return;
-        
+        if (isStun) return;
         transform.position = Vector2.MoveTowards(transform.position, move_list[target_value], Time.deltaTime * m_Speed);
         if (Vector2.Distance(transform.position, move_list[target_value]) <= 0.0f)
         {
@@ -138,43 +144,81 @@ public class Monster : Character
             this.gameObject.SetActive(false);
         }
     }
-    
-    //슬로우
+
 
     [ServerRpc(RequireOwnership = false)]
-    public void ApplySlowServerRpc(float slowAmount, float duration)
+    public void ApplyDebuffServerRpc(int debuffType, float[] values)
     {
-        if (slowAmount > currentSlowAmount || (slowAmount == currentSlowAmount && duration > currentSlowDuration))
+        DebuffType debuff = (DebuffType)debuffType;
+        switch (debuff)
         {
-            currentSlowAmount = slowAmount;
-            currentSlowDuration = duration;
+            case DebuffType.Slow:
+                if (values[0] > currentSlowAmount ||
+                    (values[0] == currentSlowAmount && values[1] > currentSlowDuration))
+                {
+                    currentSlowAmount = values[0];
+                    currentSlowDuration = values[1];
 
-            ApplySlowClientRpc(slowAmount, duration);
+                    ApplySlowClientRpc(values[0], values[1]);
+                }
+                break;
+            case DebuffType.Stun:
+                ApplyStunClientRpc(values[0]);
+                break;
         }
     }
+    //스턴
+    [ClientRpc]
+    private void ApplyStunClientRpc(float stunDuration)
+    {
+        CoroutineStop(stunCoroutine);
 
+        stunCoroutine = StartCoroutine(EffectCoroutine(stunDuration, () =>
+        {
+            isStun = true;
+            stunPs.SetActive(true);
+        }, () =>
+        {
+            isStun = false;
+            stunPs.SetActive(false);
+        }));
+    }
+
+    //슬로우
     [ClientRpc]
     private void ApplySlowClientRpc(float slowAmount, float duration)
     {
-        if (slowCoroutine != null)
+        CoroutineStop(slowCoroutine);
+        
+        slowCoroutine = StartCoroutine(EffectCoroutine(duration, () =>
         {
-            StopCoroutine(slowCoroutine);
-        }
-        slowCoroutine = StartCoroutine(SlowEffectCoroutine(slowAmount, duration));
-    }
-    private IEnumerator SlowEffectCoroutine(float slowAmount, float duration)
-    {
-        float newSpeed = originalSpeed - (originalSpeed * slowAmount);
-        newSpeed = Mathf.Max(newSpeed, 0.1f); //0.1f 보다 아래로 가는거 방지
+            float newSpeed = originalSpeed - (originalSpeed * slowAmount);
+            newSpeed = Mathf.Max(newSpeed, 0.1f); //0.1f 보다 아래로 가는거 방지
 
-        m_Speed = newSpeed;
-        _spriteRenderer.color = slowColor;
+            m_Speed = newSpeed;
+            _spriteRenderer.color = slowColor;
+        }, () =>
+        {
+            m_Speed = originalSpeed;
+            _spriteRenderer.color = Color.white;
+        }));
+    }
+
+    private void CoroutineStop(Coroutine coroutine)
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+    }
+    private IEnumerator EffectCoroutine(float duration, Action FirstAction, Action SecondAction)
+    {
+        FirstAction?.Invoke();
         
         yield return new WaitForSeconds(duration);
 
-        m_Speed = originalSpeed;
-        _spriteRenderer.color = Color.white;
-
+        SecondAction?.Invoke();
+        
     }
 
     // [ServerRpc(RequireOwnership = false)]

@@ -39,7 +39,8 @@ public class Hero : Character
     private float slowChance = 0.5f;
     private float slowAmount = 0.3f;
     private float slowDuration = 2.0f;
-    
+    //스턴
+    private float stunChance = 0.5f;
     private int UpgradeCount()
     {
         switch (m_Data.rare)
@@ -165,7 +166,15 @@ public class Hero : Character
             AttackMonsterServerRpc(Target.NetworkObjectId);
             if (Random.value <= slowChance)
             {
-                Target.GetComponent<Monster>().ApplySlowServerRpc(slowAmount, slowDuration);
+                float[] values = {slowAmount, slowDuration };
+                Target.GetComponent<Monster>().ApplyDebuffServerRpc((int)DebuffType.Slow, values);
+            }
+
+            if (Random.value <= stunChance)
+            {
+                //3초
+                float[] values = { 3.0f };
+                Target.GetComponent<Monster>().ApplyDebuffServerRpc((int)DebuffType.Stun, values);
             }
         }
             
