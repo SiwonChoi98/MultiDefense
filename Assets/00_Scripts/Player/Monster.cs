@@ -11,6 +11,7 @@ public class Monster : Character
     public bool Boss;
     
     [SerializeField] private float m_Speed;
+    private float originalSpeed;
     [SerializeField] private HitText _hitText;
     [SerializeField] private Image m_Fill, m_Fill_Deco;
     
@@ -19,11 +20,18 @@ public class Monster : Character
     private bool _isDead = false;
 
     private List<Vector2> move_list = new();
+    
+    //슬로우
+    private Coroutine slowCoroutine;
+    [SerializeField] private Color slowColor;
+    private float currentSlowAmount;
+    private float currentSlowDuration;
     public override void Awake()
     {
         HP = CalculateMonsterHp(Game_Mng.Instance.Wave);
         MaxHp = HP;
-        
+
+        originalSpeed = m_Speed;
         base.Awake();
     }
     //지수적 증가 공식
@@ -129,23 +137,56 @@ public class Monster : Character
         {
             this.gameObject.SetActive(false);
         }
-        
-        // else if (IsClient)
-        // {
-        //     RequestDestroyMonsterServerRpc();
-        // }
-        
-        
     }
+    
+    //슬로우
 
     [ServerRpc(RequireOwnership = false)]
-    private void RequestDestroyMonsterServerRpc()
+    public void ApplySlowServerRpc(float slowAmount, float duration)
     {
-        DestoryMonster();
+        if (slowAmount > currentSlowAmount || (slowAmount == currentSlowAmount && duration > currentSlowDuration))
+        {
+            currentSlowAmount = slowAmount;
+            currentSlowDuration = duration;
+
+            ApplySlowClientRpc(slowAmount, duration);
+        }
     }
 
-    private void DestoryMonster()
+    [ClientRpc]
+    private void ApplySlowClientRpc(float slowAmount, float duration)
     {
-        Destroy(this);
+        if (slowCoroutine != null)
+        {
+            StopCoroutine(slowCoroutine);
+        }
+        slowCoroutine = StartCoroutine(SlowEffectCoroutine(slowAmount, duration));
     }
+    private IEnumerator SlowEffectCoroutine(float slowAmount, float duration)
+    {
+        float newSpeed = originalSpeed - (originalSpeed * slowAmount);
+        newSpeed = Mathf.Max(newSpeed, 0.1f); //0.1f 보다 아래로 가는거 방지
+
+        m_Speed = newSpeed;
+        _spriteRenderer.color = slowColor;
+        
+        yield return new WaitForSeconds(duration);
+
+        m_Speed = originalSpeed;
+        _spriteRenderer.color = Color.white;
+
+    }
+
+    // [ServerRpc(RequireOwnership = false)]
+    // private void RequestDestroyMonsterServerRpc()
+    // {
+    //     DestoryMonster();
+    // }
+    //
+    // private void DestoryMonster()
+    // {
+    //     Destroy(this);
+    // }
+    //
+    
 }

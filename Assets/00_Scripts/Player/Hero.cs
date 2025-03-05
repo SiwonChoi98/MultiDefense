@@ -5,6 +5,7 @@ using Mono.Cecil;
 using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Hero : Character
 {
@@ -34,6 +35,11 @@ public class Hero : Character
     public SpriteRenderer circleRanderer;
     [SerializeField] private GameObject SpawnParticle;
 
+    //슬로우 
+    private float slowChance = 0.5f;
+    private float slowAmount = 0.3f;
+    private float slowDuration = 2.0f;
+    
     private int UpgradeCount()
     {
         switch (m_Data.rare)
@@ -154,8 +160,15 @@ public class Hero : Character
 
     public void SetDamage()
     {
-        if(Target != null)
+        if (Target != null)
+        {
             AttackMonsterServerRpc(Target.NetworkObjectId);
+            if (Random.value <= slowChance)
+            {
+                Target.GetComponent<Monster>().ApplySlowServerRpc(slowAmount, slowDuration);
+            }
+        }
+            
     }
     
     [ServerRpc(RequireOwnership = false)]
