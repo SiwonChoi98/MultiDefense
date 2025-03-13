@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4c29668c-1273-4a4e-bb4a-c374d8d6671d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.multiDefense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Enum/Enum_Holder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Enum/Enum_Holder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Data/Hero_Scriptable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00_Scripts/Player/Monster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02_Prefabs/Monster.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02_Prefabs/Monster.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/Font/BMJUA_otf SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/Font/BMJUA_otf SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Archor.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Archor.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Cleric.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Character_Scriptable/Common/Cleric.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +135,8 @@
       <workItem from="1740982977328" duration="4319000" />
       <workItem from="1741059796330" duration="2091000" />
       <workItem from="1741147660199" duration="3502000" />
+      <workItem from="1741760547153" duration="31000" />
+      <workItem from="1741837081517" duration="3947000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Mono.Cecil;
 using Unity.Mathematics;
 using Unity.Netcode;
@@ -34,13 +35,7 @@ public class Hero : Character
     public Color[] colors;
     public SpriteRenderer circleRanderer;
     [SerializeField] private GameObject SpawnParticle;
-
-    //슬로우 
-    private float slowChance = 0.5f;
-    private float slowAmount = 0.3f;
-    private float slowDuration = 2.0f;
-    //스턴
-    private float stunChance = 0.5f;
+    
     private int UpgradeCount()
     {
         switch (m_Data.rare)
@@ -164,17 +159,31 @@ public class Hero : Character
         if (Target != null)
         {
             AttackMonsterServerRpc(Target.NetworkObjectId);
-            if (Random.value <= slowChance)
-            {
-                float[] values = {slowAmount, slowDuration };
-                Target.GetComponent<Monster>().ApplyDebuffServerRpc((int)DebuffType.Slow, values);
-            }
 
-            if (Random.value <= stunChance)
+            if (m_Data.effectType != null)
             {
-                //3초
-                float[] values = { 3.0f };
-                Target.GetComponent<Monster>().ApplyDebuffServerRpc((int)DebuffType.Stun, values);
+                for (int i = 0; i < m_Data.effectType.Length; i++)
+                {
+                    List<float> values = new List<float>(m_Data.effectType[i].parameters);
+                
+                    switch (m_Data.effectType[i].DebuffType)
+                    {
+                        case DebuffType.Slow:
+                            if (Random.value <= values[0])
+                            {
+                                values.RemoveAt(0);
+                                Target.GetComponent<Monster>().ApplyDebuffServerRpc((int)DebuffType.Slow, values.ToArray());
+                            }
+                            break;
+                        case DebuffType.Stun:
+                            if (Random.value <= values[0])
+                            {
+                                values.RemoveAt(0);
+                                Target.GetComponent<Monster>().ApplyDebuffServerRpc((int)DebuffType.Stun, values.ToArray());
+                            }
+                            break;
+                    }
+                }
             }
         }
             

@@ -1,6 +1,26 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
+[System.Serializable]
+public class StatusEffect
+{
+    public DebuffType DebuffType;
+    public float[] parameters;
+
+    public void ConfigureParameters()
+    {
+        switch (DebuffType)
+        {
+            case DebuffType.Slow:
+                parameters = new float[3];
+                break;
+            case DebuffType.Stun:
+                parameters = new float[2];
+                break;
+        }
+    }
+}
 [System.Serializable]
 public struct HeroData : INetworkSerializable
 {
@@ -8,7 +28,7 @@ public struct HeroData : INetworkSerializable
     public int heroATK;
     public float heroATK_Speed;
     public float heroRange;
-    //public Rarity rare;
+    
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
         serializer.SerializeValue(ref heroName);
@@ -27,7 +47,14 @@ public class Hero_Scriptable : ScriptableObject
     public RuntimeAnimatorController Animator;
 
     public Rarity rare;
-    public Bullet bullet; //bullet
+    
+    [Header("##HitParticle")]
+    public Bullet bullet;
+    
+    [Header("## Hero Debuff Data")]
+    [Space(20f)]
+    public StatusEffect[] effectType;
+    
     public HeroData GetHeroData()
     {
         return new HeroData()
